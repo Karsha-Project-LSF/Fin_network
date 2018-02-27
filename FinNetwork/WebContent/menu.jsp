@@ -86,12 +86,64 @@
 							<a href="TRNIC2.jsp"> 
 								<i class="fa fa-sitemap" aria-hidden="true"></i> TNIC
 							</a>
+							<ul class="nav child_menu">
+							<% 
+								String array_trdf_gt[][] = new String[7][7];
+									array_trdf_gt[0][0] = "AETNA Inc";
+									array_trdf_gt[0][1] = "Aetna Inc CIK: ['0001013761', '0001122304'] uri_id: 4295903286";
+									array_trdf_gt[1][0] = "AUTOMATIC DATA PROCESSING INC";	
+									array_trdf_gt[1][1] = "Automatic Data Processing Inc CIK: 8670 uri_id: 4295903514";
+									array_trdf_gt[2][0] = "BANK OF AMERICA corp";
+									array_trdf_gt[2][1] = "Bank of America Corp CIK: ['0000070858', '0001085917'] uri_id: 8589934339";
+									array_trdf_gt[3][0] = "BLACKROCK inc";
+									array_trdf_gt[3][1] = "BlackRock Inc CIK: 1364742 uri_id: 4295900990";
+									array_trdf_gt[4][0] = "BOSTON PROPERTIES LP";	
+									array_trdf_gt[4][1] = "Boston Properties Inc CIK: 1037540 uri_id: 4295903585";	
+									array_trdf_gt[5][0] = "FACEBOOK Inc";
+									array_trdf_gt[5][1] = "Facebook Inc CIK: 1326801 uri_id: 4297297477";
+									//array_tr[6] = "WALT DISNEY Co";
+									array_trdf_gt[6][0] = "International Business Machines Corp";
+									array_trdf_gt[6][1] = "International Business Machines Corp CIK: 51143 uri_id: 4295904307";
+								
+								for (int i = 0; i < array_trdf_gt.length; i++) {
+									%>	<li><a href="TRDF.jsp?param1=<%= array_trdf_gt[i][1] %>" id="sid_14"><%= array_trdf_gt[i][0] %></a></li> <% 
+								}	
+							%>
+							</ul>
 						</li>
 						<li>
-							<a href="TRDF_gt.jsp"> 
-								<i class="fa fa-sitemap" aria-hidden="true"></i>TRDF ground truth
+							<a href="#"> 
+								<i class="fa fa-sitemap" aria-hidden="true"></i>TRDF<span
+								class="fa fa-chevron-down"></span>
 							</a>
-						</li>
+							<ul class="nav child_menu">
+							<% 
+								String array_trdf_gt[][] = new String[7][7];
+									array_trdf_gt[0][0] = "AETNA Inc";
+									array_trdf_gt[0][1] = "Aetna Inc CIK: ['0001013761', '0001122304'] uri_id: 4295903286";
+									array_trdf_gt[1][0] = "AUTOMATIC DATA PROCESSING INC";	
+									array_trdf_gt[1][1] = "Automatic Data Processing Inc CIK: 8670 uri_id: 4295903514";
+									array_trdf_gt[2][0] = "BANK OF AMERICA corp";
+									array_trdf_gt[2][1] = "Bank of America Corp CIK: ['0000070858', '0001085917'] uri_id: 8589934339";
+									array_trdf_gt[3][0] = "BLACKROCK inc";
+									array_trdf_gt[3][1] = "BlackRock Inc CIK: 1364742 uri_id: 4295900990";
+									array_trdf_gt[4][0] = "BOSTON PROPERTIES LP";	
+									array_trdf_gt[4][1] = "Boston Properties Inc CIK: 1037540 uri_id: 4295903585";	
+									array_trdf_gt[5][0] = "FACEBOOK Inc";
+									array_trdf_gt[5][1] = "Facebook Inc CIK: 1326801 uri_id: 4297297477";
+									//array_tr[6] = "WALT DISNEY Co";
+									array_trdf_gt[6][0] = "International Business Machines Corp";
+									array_trdf_gt[6][1] = "International Business Machines Corp CIK: 51143 uri_id: 4295904307";
+								
+								for (int i = 0; i < array_trdf_gt.length; i++) {
+									%>	<li><a href="TRDF.jsp?param1=<%= array_trdf_gt[i][1] %>" id="sid_14"><%= array_trdf_gt[i][0] %></a></li> <% 
+								}
+								
+							%>
+							
+							
+							</ul>
+						</li> 
 						<li><a href="http://opensource.lk/"> <i
 								class="fa fa-users" aria-hidden="true"></i> People
 						</a></li>

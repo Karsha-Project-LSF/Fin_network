@@ -104,7 +104,7 @@ function TRDF_gt_viz(url,tag){
             .style('fill', '#55584E')
             .style("font-size", "11");
 
-      edgepaths = svg.selectAll(".edgepath")
+     /* edgepaths = svg.selectAll(".edgepath")
       .data(bilinks)
       .enter()
       .append('path')
@@ -134,7 +134,7 @@ function TRDF_gt_viz(url,tag){
     .attr("startOffset", "50%")
     .text(function(d){
     	return d[3];
-    });
+    });*/
 
 
 

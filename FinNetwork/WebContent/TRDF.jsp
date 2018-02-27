@@ -26,6 +26,9 @@
       }
     </style>
 </head>
+<%
+	String parm1 = request.getParameter("param1");
+%>
 <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -50,19 +53,7 @@
            <div class="x_panel">
            		<div class="x_title">
                     <h2>TRDF ground truth DataSet</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
                     <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div class="input-group">
-	                    <input id="company_search" type="text" class="form-control" placeholder="Search for...">
-	                    <span class="input-group-btn">
-	                      <button id="select_company" class="btn btn-default" type="button">Go!</button>
-	                    </span>
-                  	</div>
                   </div>
            </div>
            <div id="company_network" class="x_panel" >
@@ -120,28 +111,25 @@
                 }
             });        
      	});
-     	
-     	$("#select_company").click(function(){
-     		var company_record = $('#company_search').val();
-     		var company_details = null;
-     		var company_uriID = null;
-     		if(company_record){
-     			var res = company_record.split("uri_id:");
-     			if(res.length>1){
-     				company_uriID = res[1].replace(/ /g,'');
-     				company_details = res[0];
-     					$("#company_network").show();
-     					$("#company_header").html("<h2>"+company_details+"</h2>");
-     					TRDF_gt_viz("rest/trdf_gt/"+company_uriID,"content_btn");
-     			}
-     		}
-     		//console.log(company_cik+"  "+ company_tsy);
-     	});
-    	
-     	
-     	//TNIC2_viz("rest/sec/ADP/2013","content_2015");
-     	
+     	process_trdf();
      });
+     
+     function process_trdf(){
+    	var company_record = "<%= parm1 %>";
+  		var company_details = null;
+  		var company_uriID = null;
+  		if(company_record){
+  			var res = company_record.split("uri_id:");
+  			if(res.length>1){
+  				company_uriID = res[1].replace(/ /g,'');
+  				company_details = res[0];
+  					$("#company_network").show();
+  					$("#company_header").html("<h2>"+company_details+"</h2>");
+  					TRDF_gt_viz("rest/trdf_gt/"+company_uriID,"content_btn");
+  			}
+  		} 
+  		console.log("kkkkkkkkkkk : "+company_details);
+     }
      
     </script>
 
