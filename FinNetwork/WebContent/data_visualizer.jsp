@@ -235,7 +235,7 @@
     	 document.getElementById("oc_container").style.display = "block";
     	 document.getElementById("sec_container").style.display = "none";
     	 document.getElementById("tr_container").style.display = "none";
-    	 oc_viz("../../FinNetwork/rest/oc");
+    	 oc_viz("../../FinNetwork/rest/oc/"+comapny_name);
     	
      }
     </script>

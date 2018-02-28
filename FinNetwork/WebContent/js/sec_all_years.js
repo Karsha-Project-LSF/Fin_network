@@ -212,7 +212,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
     function edge_click(d){
         new PNotify({
             title: 'Edge Details',
-            text: 'Source: '+d[0].equity+'<br> Target: '+d[2].equity+'<br>Role: '+d[3]+'<br>ThreeSentences : '+d[4],
+            text: 'Source: '+d[0].equity+'<br> Target: '+d[2].equity+'<br>Role: '+d[3]+'<br>Five Sentences : '+d[4],
             type: 'success',
             styling: 'bootstrap3'
         });

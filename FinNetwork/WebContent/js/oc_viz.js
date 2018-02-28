@@ -36,16 +36,16 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
         if (error) throw error;
 
         var nodes = graph.nodes,
-            nodeById = d3.map(nodes, function(d) { return d.id; }),
+            nodeById = d3.map(nodes, function(d) { return d.oc_ID; }),
             links = graph.links,
             bilinks = [];
 
         links.forEach(function(link) {
-            var s = link.source = nodeById.get(link.source),
-                t = link.target = nodeById.get(link.target),
+            var s = link.source = nodeById.get(link.oc_SUBJECT_ID),
+                t = link.target = nodeById.get(link.oc_OBJECT_ID),
                 i = {}
-                pred = link.predicate = predicate_filter(link.predicate),
-                context = link.context = link.context; // intermediate node
+                pred = link.predicate = link.oc_PREDICATE_TYPE,
+                context = link.context = link.oc_CONFIDENCE_SCORE; // intermediate node
             nodes.push(i);
             links.push({source: s, target: i}, {source: i, target: t});
             bilinks.push([s, i, t,pred,context]);
@@ -81,7 +81,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
             .attr('dx', 10)
             .attr('dy', '.35em')
             .text(function(d) {
-                return d.equity;
+                return d.entity_NAME;
             })
             .style('font-family', 'sans-serif')
             .style("font-weight", "bold")
@@ -213,7 +213,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
     function edge_click(d){
         new PNotify({
             title: 'Edge Details',
-            text: 'Source: '+d[0].equity+'<br> Target: '+d[2].equity+'<br>Predicts: '+d[3]+'<br>Context: '+d[4],
+            text: 'Source: '+d[0].entity_NAME+'<br> Target: '+d[2].entity_NAME+'<br>Predicts: '+d[3]+'<br>Confidence Score: '+d[4],
             type: 'success',
             styling: 'bootstrap3'
         });

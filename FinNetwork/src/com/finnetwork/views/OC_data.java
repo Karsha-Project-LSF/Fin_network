@@ -2,23 +2,25 @@ package com.finnetwork.views;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.finnetwork.controllers.OpenCorp_IBM_controller;
+import com.finnetwork.controllers.OC_controller;
 
 @Path("/oc")
-public class OpenCorp_IBM_data {
+public class OC_data {
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response getIBMNetwork() {		
+	@Path("/{companyName}")
+	public Response getIBMNetwork(@PathParam("companyName") String companyName) {		
 		System.out.println("Inside OC view...");
 		
-		OpenCorp_IBM_controller openCorp_IBM_controller = new OpenCorp_IBM_controller();
-		JsonNode json_oc_network = openCorp_IBM_controller.get_OpenCorp_IBM();
+		OC_controller oc_controller = new OC_controller();
+		JsonNode json_oc_network = oc_controller.get_OC(companyName);
 		
 		Response response = Response.ok(json_oc_network, MediaType.APPLICATION_JSON).build();		
 		return response;		
