@@ -97,20 +97,6 @@
     	$("#company_network").hide();
      	$('.ui-pnotify').remove(); 
      	
-     	$.getJSON("rest/trdf_gt/company",
-     		function(data) {
-     		$('#company_search').autoComplete({
-                minChars: 1,
-                source: function(term, suggest){
-                    term = term.toLowerCase();
-                    var choices = data.company;
-                    var suggestions = [];
-                    for (i=0;i<choices.length;i++)
-                        if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-                    suggest(suggestions);
-                }
-            });        
-     	});
      	process_trdf();
      });
      
@@ -128,7 +114,7 @@
   					TRDF_gt_viz("rest/trdf_gt/"+company_uriID,"content_btn");
   			}
   		} 
-  		console.log("kkkkkkkkkkk : "+company_details);
+  		
      }
      
     </script>
