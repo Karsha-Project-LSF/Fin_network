@@ -25,6 +25,7 @@
 <%
 	String comapny_name = request.getParameter("param1");
 	String data_set =request.getParameter("param2");
+	String company =request.getParameter("param3");
 	
 	int id;
 	if(data_set.equals("sec_data")){
@@ -74,7 +75,7 @@
 					<div class="dashboard_graph" id="oc_container" style="height: 700px" class="x_content" display:none>
 						<div class="row x_title">
 							<div class="col-md-6">
-							<h3><%=comapny_name%> <small>OC Dataset</small></h3>
+							<h3><%= company %> <small>OC Dataset</small></h3>
 							</div>
 							<div class="col-md-6">
 							</div>

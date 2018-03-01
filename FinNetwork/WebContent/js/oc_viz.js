@@ -88,7 +88,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
             .style('fill', '#55584E')
             .style("font-size", "11");
 
-      edgepaths = svg.selectAll(".edgepath")
+     /* edgepaths = svg.selectAll(".edgepath")
       .data(bilinks)
       .enter()
       .append('path')
@@ -118,7 +118,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
     .attr("startOffset", "50%")
     .text(function(d){
         return d[3];
-    });
+    });*/
 
 
 
@@ -187,10 +187,10 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
                 return o[0].id === d.id || o[2].id === d.id ? 'url(#arrowhead)' : 'url(#arrowhead-fade)';
             });
             link.style('stroke-width', '2px');
-            edgelabels.style("visibility",function(o){
+            /*edgelabels.style("visibility",function(o){
                 return o[0].id === d.id || o[2].id === d.id ? "visible":"hidden";
 
-            });
+            });*/
 
 
         }
@@ -201,7 +201,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
         link.style("stroke-opacity", 1);
         link.style("stroke-width", 1);
         link.attr("marker-end", "url(#arrowhead)");
-        edgelabels.style("visibility","visible");
+      //  edgelabels.style("visibility","visible");
     }
     function edge_mouseover(d) {
         d3.select(this).style('stroke-width', '3.5px');
@@ -213,7 +213,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
     function edge_click(d){
         new PNotify({
             title: 'Edge Details',
-            text: 'Source: '+d[0].entity_NAME+'<br> Target: '+d[2].entity_NAME+'<br>Predicts: '+d[3]+'<br>Confidence Score: '+d[4],
+            text: 'Source: '+d[0].entity_NAME+'<br> Target: '+d[2].entity_NAME+'<br>Predicate: '+d[3]+'<br>Confidence Score: '+d[4],
             type: 'success',
             styling: 'bootstrap3'
         });

@@ -318,7 +318,7 @@ function draw_me(filename){
             function edge_click(d){
             new PNotify({
                 title: 'Edge Details',
-                text: 'Source: '+d.source.equity+'<br> Target: '+d.target.equity+'<br>Context: '+d.predicate+'<br>Predicts: '+d.predicate,
+                text: 'Source: '+d.source.equity+'<br> Target: '+d.target.equity+'<br>Context: '+d.predicate+'<br>Predicate: '+d.predicate,
                 type: 'success',
                 styling: 'bootstrap3'
             });

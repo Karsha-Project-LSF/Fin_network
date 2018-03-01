@@ -98,23 +98,23 @@
 									array_oc[0][0] = "Aetna Inc";
 									array_oc[0][1] = "31223432";
 									array_oc[1][0] = "Automatic Data Processing";
-									array_oc[1][1] = "AUTOMATIC DATA PROCESSING INC";
+									array_oc[1][1] = "91267231";
 									array_oc[2][0] = "Bank of America Corp";
-									array_oc[2][1] = "BANK OF AMERICA CORP DE";
+									array_oc[2][1] = "53874222";
 									array_oc[3][0] = "BlackRock";
-									array_oc[3][1] = "BlackRock Inc.";
+									array_oc[3][1] = "92797866";
 									array_oc[4][0] = "Boston Properties";
-									array_oc[4][1] = "BOSTON PROPERTIES INC";
+									array_oc[4][1] = "53874225";
 									array_oc[5][0] = "Facebook, Inc";
-									array_oc[5][1] = "Facebook Inc";
+									array_oc[5][1] = "27748339";
 									array_oc[6][0] = "Time Warner Inc";
-									array_oc[6][1] = "TIME WARNER INC.";
+									array_oc[6][1] = "53874368";
 									array_oc[7][0] = "International Business Machines";
-									array_oc[7][1] = "INTERNATIONAL BUSINESS MACHINES CORP";
+									array_oc[7][1] = "59425444";
 									//array_sec[7][0] = "WALTDISNEY";
 								    
 									for (int i = 0; i < array_oc.length; i++) {
-									%>	<li><a href="data_visualizer.jsp?param1=<%= array_oc[i][1] %>&param2=oc_data" id="sid_14"><%= array_oc[i][0] %></a></li> <% 
+									%>	<li><a href="data_visualizer.jsp?param1=<%= array_oc[i][1] %>&param2=oc_data&param3=<%= array_oc[i][0] %>" id="sid_14"><%= array_oc[i][0] %></a></li> <% 
 									}
 								%>
 							</ul>
