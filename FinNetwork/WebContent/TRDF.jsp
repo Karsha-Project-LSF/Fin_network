@@ -59,10 +59,33 @@
            <div id="company_network" class="x_panel" >
            		<div class="x_title">
                     <h2 id="company_header" ></h2>
+                    <div class="pull-right">
+                     <div class="form-group">
+                        <div class="col-md-12 col-sm-9 col-xs-12">
+                          <select id="edge_filter" class="form-control">
+                            <option>All</option>
+                          </select>
+                        </div>
+                        </div>
+                        </div>
+                    
+                    <!-- <ul class="nav nav-pills pull-right" role="tablist" >
+                    	
+                    	<li role="presentation" class="dropdown">
+		                    <a id="headeref" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+		                      	Edge Filters 
+		                      	<span class="caret"></span>
+                            </a>
+                      		<ul id="edge_filter" class="dropdown-menu animated fadeInDown" role="menu">	
+                      		</ul>
+                    	</li> -->
+                     </ul>  
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">                  
-                    <div id="content_btn" style="height:650px;"></div>
+                    <div id="content_btn" style="height:650px;">
+               
+                    </div>
 				</div>
            </div>
            </div>

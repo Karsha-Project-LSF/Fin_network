@@ -152,6 +152,7 @@
 									%>	<li><a href="TNIC_c8.jsp?param1=<%= array_tnic[i][1] %>" id="sid_14"><%= array_tnic[i][0] %></a></li> <% 
 								}	
 							%>
+							<li><a href="TNIC_search.jsp" id="sid_14">TNIC Search</a></li>
 							</ul>
 						</li>
 						

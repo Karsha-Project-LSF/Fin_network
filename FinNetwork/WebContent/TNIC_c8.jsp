@@ -85,7 +85,10 @@
 					<button id="grph1997" type="button" class="btn btn-default">1997</button>
 					<button id="grph1996" type="button" class="btn btn-default">1996</button>
                    
-                    <div id="content_btn" style="height:650px;"></div>
+                   
+                    <div id="content_btn" style="height:650px;">
+                      
+                    </div>
                     
                    
 				</div>

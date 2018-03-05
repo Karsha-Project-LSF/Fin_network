@@ -31,7 +31,7 @@ public class OC_controller {
 			OC_controller oc_con = new OC_controller();
 			Set<String> nodeSet = oc_con.node_list(oc_edges);
 			
-			Query querynodes =session.createQuery("FROM OC_Node WHERE OC_ID in (:companies)");
+			Query querynodes =session.createQuery("FROM OC_Node WHERE OC_ID in (:companies) and OC_ENTITY_TYPE = 'company'");
 			querynodes.setParameterList("companies", nodeSet);
 			List<OC_Node> oc_nodes = querynodes.list();
 			

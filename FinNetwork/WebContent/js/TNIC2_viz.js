@@ -64,7 +64,7 @@ function TNIC2_viz(url,tag){
             links.push({source: s, target: i}, {source: i, target: t});
             bilinks.push([s, i, t,pred,yr]);
         });
-
+       
         var link = svg.selectAll(".link")
             .data(bilinks)
             .enter().append("path")
