@@ -52,6 +52,40 @@ public class TRDF_gt_controller {
 		return base_network;
 	}
 
+	public JsonNode getBaseNetwork(String id, String edgeLabel) {
+		System.out.println("Requested company TRDF_gt: " + id +" edgeLabel :"+edgeLabel);
+
+		Session session = hibernate_util.getSession();
+		session.beginTransaction();
+
+		Query querysource = session
+				.createQuery("FROM TRDF_gt_Link t WHERE ((source = :id ) OR (target = :id )) AND predicate= :edgeLabel");
+		querysource.setParameter("id", id);
+		querysource.setParameter("edgeLabel", edgeLabel);
+		
+		List<TRDF_gt_Link> trdf_gt_edges = querysource.list();
+		System.out.println("done......");
+		//System.out.println("query out put :"+trdf_gt_edges.size()+" : "+id);
+		TRDF_gt_controller tnic_con = new TRDF_gt_controller();
+		Set<String> nodeSet = tnic_con.node_list(trdf_gt_edges);
+		
+		Query querynodes =session.createQuery("FROM TRDF_gt_Node WHERE company_id in(:ids)");
+		querynodes.setParameterList("ids", nodeSet);
+		List<TRDF_gt_Node> trdf_gt_nodes = querynodes.list();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayNode arrayNode = objectMapper.valueToTree(trdf_gt_nodes);
+		ArrayNode arrayLink = objectMapper.valueToTree(trdf_gt_edges);
+		ObjectNode base_network = objectMapper.createObjectNode();
+		base_network.putArray("nodes").addAll(arrayNode);
+		base_network.putArray("links").addAll(arrayLink);
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return base_network;
+	}
+	
 	public ObjectNode getCompanyData() {
 		System.out.println("Requested company data TRDF_gt ");
 
@@ -76,7 +110,7 @@ public class TRDF_gt_controller {
 	public Set<String> node_list(List<TRDF_gt_Link> nodes){
 		Set<String> node_set = new HashSet<>();
 		for (TRDF_gt_Link entity : nodes) {
-			System.out.println("oooo "+ entity.getSource());
+			//System.out.println("oooo "+ entity.getSource());
 			node_set.add(entity.getSource());
 			node_set.add(entity.getTarget());
 		}

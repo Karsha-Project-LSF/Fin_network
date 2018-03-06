@@ -1,10 +1,13 @@
 
 
-function TRDF_gt_viz(url,tag){
-	console.log(url);
-	var link_types =[];
+function TRDF_gt_viz(url,tag,edgeLabel_param){
+	
+	
+	var complete_url = url+"/"+edgeLabel_param;
+	console.log(complete_url);
 	d3.select("#"+tag).selectAll("svg").remove();
 	
+	init_Edgefilter(url);
 	previous_tag = tag;
     var graphDiv = document.getElementById(tag);
 
@@ -39,7 +42,7 @@ function TRDF_gt_viz(url,tag){
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.json(url, function(error, graph) {
+    d3.json(complete_url, function(error, graph) {
         if (error){
         	console.log("error ..... : ");
         	new PNotify({
@@ -49,24 +52,6 @@ function TRDF_gt_viz(url,tag){
             });
         	throw error;
         }
-       
-    graph.links.forEach(function(link) {
-        var pred = link.predicts = link.predicate;
-        	link_types.push(pred);
-    });
-    var edgeLabel;
-    var edge_cat = unique(link_types).slice();
-	console.log("types of links :"+unique(link_types));
-	for (var i=0;i<edge_cat.length;i++){
-		   $('<option/>').val(edge_cat[i]).html(edge_cat[i]).appendTo('#edge_filter');
-	}
-	$('#edge_filter').on('change', function() {
-		edgeLabel = this.value;
-		  console.log( this.value );
-		});
-        update(graph,edgeLabel);
-    });
-    function update(graph,edgeLabel){
         console.log(graph);
         var nodes = graph.nodes,
             nodeById = d3.map(nodes, function(d) { return d.company_id; }),
@@ -78,17 +63,12 @@ function TRDF_gt_viz(url,tag){
                 t = link.target = nodeById.get(link.target),
                 i = {}
                 pred = link.predicts = link.predicate;
-            	link_types.push(pred);
                 context = link.context = link.context// intermediate node
             nodes.push(i);
             links.push({source: s, target: i}, {source: i, target: t});
             bilinks.push([s, i, t,pred,context]);
         });
-        
-		console.log("types of links :"+unique(link_types));
-		//edge filter UI binding
-		
-		
+
         var link = svg.selectAll(".link")
             .data(bilinks)
             .enter().append("path")
@@ -157,8 +137,8 @@ function TRDF_gt_viz(url,tag){
     .attr("startOffset", "50%")
     .text(function(d){
     	return d[3];
-    });*/
-
+    });
+*/
 
 
   simulation
@@ -172,14 +152,14 @@ function TRDF_gt_viz(url,tag){
   function ticked() {
     link.attr("d", positionLink);
     node.attr("transform", positionNode);
-  
+    //edgepaths.attr("d",positionLink);
     simulation.force("center", d3.forceCenter(width / 2, height / 2));
 
     // edgepaths.attr('d', function (d) {
     //     return 'M ' + d[0].x + ' ' + d[0].y + ' L ' + d[1].x + ' ' + d[1].y;
     // });
 
-   /* edgelabels.attr('transform', function (d) {
+  /*  edgelabels.attr('transform', function (d) {
         if (d[1].x < d[0].x) {
             var bbox = this.getBBox();
 
@@ -221,14 +201,14 @@ function TRDF_gt_viz(url,tag){
                 return thisOpacity;
             });
             link.style("stroke-opacity", function(o) {
-              //  console.log(o);
+                //console.log(o);
                 return o[0].company_id === d.company_id || o[2].company_id === d.company_id ? 1 : opacity;
             });
             link.attr('marker-end',function(o){
                 return o[0].company_id === d.company_id || o[2].company_id === d.company_id ? 'url(#arrowhead)' : 'url(#arrowhead-fade)';
             });
             link.style('stroke-width', '2px');
-           /* edgelabels.style("visibility",function(o){
+          /*  edgelabels.style("visibility",function(o){
                 return o[0].company_id === d.company_id || o[2].company_id === d.company_id ? "visible":"hidden";
 
             });*/
@@ -263,13 +243,7 @@ function TRDF_gt_viz(url,tag){
 
 
 
-    }
-} 
-function unique(array) {
-        return $.grep(array, function(el, index) {
-            return index == $.inArray(el, array);
-        });
-}
+});
 
 function positionLink(d) {
   return "M" + d[0].x + "," + d[0].y
@@ -297,6 +271,44 @@ function dragended(d) {
 
 //Zoom functions
 function zoom_actions(){
-    svg.attr("transform", d3.event.transform);
+    svg.attr("transform", d3.event.transform)
 }
 
+
+function init_Edgefilter(url){
+	var link_types =[];
+	d3.json(url, function(error, graph) {
+        if (error){
+        	console.log("error ..... : ");
+        	new PNotify({
+                title: 'NO Records Available !',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+        	throw error;
+        }
+    graph.links.forEach(function(link) {
+        var pred = link.predicts = link.predicate;
+        	link_types.push(pred);
+    });
+    var edgeLabel;
+   
+    var edge_cat = unique(link_types).slice();
+	console.log("types of links :"+edge_cat);
+	
+	for (var i=0;i<edge_cat.length;i++){
+		var opt = $('<option/>').val(edge_cat[i]).attr('id', edge_cat[i]).html(edge_cat[i]);
+		if(!$('#'+edge_cat[i]).length){
+			opt.appendTo('#edge_filter');
+		}
+	}
+    });
+}
+function unique(array) {
+    return $.grep(array, function(el, index) {
+        return index == $.inArray(el, array);
+    });
+}
+
+
+}

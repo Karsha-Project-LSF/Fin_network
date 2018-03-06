@@ -63,7 +63,7 @@
                      <div class="form-group">
                         <div class="col-md-12 col-sm-9 col-xs-12">
                           <select id="edge_filter" class="form-control">
-                            <option>All</option>
+                          <option>All</option>
                           </select>
                         </div>
                         </div>
@@ -117,13 +117,23 @@
 
     <script>
      $(document).ready(function (){
+    	 var edgeLabel_param = "";
     	$("#company_network").hide();
      	$('.ui-pnotify').remove(); 
-     	
-     	process_trdf();
+     	$('#edge_filter').on('change', function() {
+     		if(this.value == 'All'){
+     			edgeLabel_param = "";
+     		}else{
+     			edgeLabel_param = this.value;
+     		}
+     		
+     		process_trdf(edgeLabel_param);
+    		console.log( this.value );
+    	 });
+     	process_trdf(edgeLabel_param);
      });
      
-     function process_trdf(){
+     function process_trdf(edgeLabel_param){
     	var company_record = "<%= parm1 %>";
   		var company_details = null;
   		var company_uriID = null;
@@ -134,7 +144,8 @@
   				company_details = res[0];
   					$("#company_network").show();
   					$("#company_header").html("<h2>"+company_details+"</h2>");
-  					TRDF_gt_viz("rest/trdf_gt/"+company_uriID,"content_btn");
+  					TRDF_gt_viz("rest/trdf_gt/"+company_uriID,"content_btn",edgeLabel_param);
+  					
   			}
   		} 
   		
