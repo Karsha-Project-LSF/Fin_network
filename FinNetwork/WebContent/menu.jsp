@@ -51,7 +51,7 @@
 									//array_sec[7][0] = "WALTDISNEY";
 								    
 									for (int i = 0; i < array_sec.length; i++) {
-									%>	<li><a href="data_visualizer.jsp?param1=<%= array_sec[i][1] %>&param2=sec_data" id="sid_14"><%= array_sec[i][0] %></a></li> <% 
+									%>	<li><a href="SEC_c8.jsp?param1=<%= array_sec[i][1] %>&param2=sec_data" id="sid_14"><%= array_sec[i][0] %></a></li> <% 
 									}
 								%>
 							</ul></li>

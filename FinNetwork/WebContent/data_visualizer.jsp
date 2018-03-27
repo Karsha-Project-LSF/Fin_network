@@ -94,11 +94,14 @@
 						
 						<div class="tab">
 							<button class="tablinks" onclick="singleGraph(event, 'all')">All</button>
+							<button class="tablinks" onclick="singleGraph(event, '2009')">2009</button>
+							<button class="tablinks" onclick="singleGraph(event, '2010')">2010</button>
+							<button class="tablinks" onclick="singleGraph(event, '2011')">2011</button>
+							<button class="tablinks" onclick="singleGraph(event, '2012')">2012</button>
 							<button class="tablinks" onclick="singleGraph(event, '2013')">2013</button>
 							<button class="tablinks" onclick="singleGraph(event, '2014')">2014</button>
 							<button class="tablinks" onclick="singleGraph(event, '2015')">2015</button>
 							<button class="tablinks" onclick="singleGraph(event, '2016')">2016</button>
-							<button class="tablinks" onclick="singleGraph(event, '2017')">2017</button>
 						</div>
 					
 						<!-- Tab content -->
@@ -111,7 +114,50 @@
 								<div class="x_content" id="bind_all" style="height: 450px;"></div>
 							</div>
 						</div>
-					
+						<div id="2009" class="tabcontent">
+							<h3>2009</h3>	
+							<div class="x_panel tile fixed_height_420">
+									<ul class="nav navbar-right panel_toolbox">
+									<li><a class="close-link" style="left:625px"><i class="fa fa-close" ></i></a>
+									</li>
+									</ul>
+								<div class="x_content" id="content_2009" style="height: 450px;">
+								</div>
+							</div>
+						</div>
+						<div id="2010" class="tabcontent">
+							<h3>2010</h3>	
+							<div class="x_panel tile fixed_height_420">
+									<ul class="nav navbar-right panel_toolbox">
+									<li><a class="close-link" style="left:625px"><i class="fa fa-close" ></i></a>
+									</li>
+									</ul>
+								<div class="x_content" id="content_2010" style="height: 450px;">
+								</div>
+							</div>
+						</div>
+						<div id="2011" class="tabcontent">
+							<h3>2011</h3>	
+							<div class="x_panel tile fixed_height_420">
+									<ul class="nav navbar-right panel_toolbox">
+									<li><a class="close-link" style="left:625px"><i class="fa fa-close" ></i></a>
+									</li>
+									</ul>
+								<div class="x_content" id="content_2011" style="height: 450px;">
+								</div>
+							</div>
+						</div>
+						<div id="2012" class="tabcontent">
+							<h3>2012</h3>	
+							<div class="x_panel tile fixed_height_420">
+									<ul class="nav navbar-right panel_toolbox">
+									<li><a class="close-link" style="left:625px"><i class="fa fa-close" ></i></a>
+									</li>
+									</ul>
+								<div class="x_content" id="content_2012" style="height: 450px;">
+								</div>
+							</div>
+						</div>
 						<div id="2013" class="tabcontent">
 							<h3>2013</h3>	
 							<div class="x_panel tile fixed_height_420">
@@ -160,17 +206,6 @@
 							</div>
 						</div>
 						
-						<div id="2017" class="tabcontent">
-							<h3>2017</h3>	
-							<div class="x_panel tile fixed_height_420">
-									<ul class="nav navbar-right panel_toolbox">
-									<li><a class="close-link" style="left:625px"><i class="fa fa-close" ></i></a>
-									</li>
-									</ul>
-								<div class="x_content" id="content_2017" style="height: 450px;">
-								</div>
-							</div>
-						</div>
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -217,11 +252,15 @@
     	 document.getElementById("oc_container").style.display = "none";
     	
 		graph_per_company("../../FinNetwork/rest/sec/"+comapny_name, "bind_all", id);
+		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2009","content_2013",id,2009);
+		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2010","content_2013",id,2010);
+		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2011","content_2013",id,2011);
+		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2012","content_2013",id,2012);
 		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2013","content_2013",id,2013);
 		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2014","content_2014",id,2014);
 		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2015","content_2015",id,2015);
 		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2016","content_2016",id,2016);
-		draw_me_single_equity("../../FinNetwork/rest/sec/"+comapny_name+"/2017","content_2017",id,2017);
+		
 		
      
      });
