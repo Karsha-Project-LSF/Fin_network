@@ -101,5 +101,26 @@ public class SEC_controller {
 		
 		return base_network_yearly;
 	}
+
+	public ObjectNode getCompanyData() {
+		System.out.println("Requested company data SEC ");
+
+		Session session = hibernate_util.getSession();
+		session.beginTransaction();
+		Query querysource = session
+				.createQuery("SELECT concat(equity,' : ',id) as company FROM SEC_Node where id in (select source from SEC_Link where role like 'comp%')");
+
+		List sourceList = querysource.list();
+
+		ObjectMapper mapper = new ObjectMapper();
+		ArrayNode array = mapper.valueToTree(sourceList);
+		ObjectNode companyNode = mapper.createObjectNode();
+		companyNode.putArray("company").addAll(array);
+
+		session.getTransaction().commit();
+		session.close();
+		// System.out.println("size of company records : "+companyNode.toString());
+		return companyNode;
+	}
 }
 

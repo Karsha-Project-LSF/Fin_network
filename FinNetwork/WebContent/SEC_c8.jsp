@@ -142,19 +142,7 @@
   					$("#grph2012").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2012</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2012","content_btn",id);});
   					$("#grph2011").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2011</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2011","content_btn",id);});
   					$("#grph2010").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2010</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2010","content_btn",id);});
-  					$("#grph2009").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2009</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2009","content_btn",id);});
-  					
-  					
-  					
-  					
-  					$("#grph2015").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2015 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2015","content_btn");});
-  					$("#grph2014").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2014 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2014","content_btn");});	
-  					$("#grph2013").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2013 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2013","content_btn");});
-  					$("#grph2012").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2012 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2012","content_btn");});
-  					$("#grph2011").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2011 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2011","content_btn");});
-  					$("#grph2010").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2010 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2010","content_btn");});
-  					$("#grph2009").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2009 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2009","content_btn");});
-  					
+  					$("#grph2009").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2009</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2009","content_btn",id);});		
   					
   				}
   			}

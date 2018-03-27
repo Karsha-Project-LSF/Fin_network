@@ -71,6 +71,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                	<button id="grphALL" type="button" class="btn btn-default">All</button>
+                	<button id="grph2016" type="button" class="btn btn-default">2016</button>
                 	<button id="grph2015" type="button" class="btn btn-default">2015</button>
 					<button id="grph2014" type="button" class="btn btn-default">2014</button>
 					<button id="grph2013" type="button" class="btn btn-default">2013</button>
@@ -78,23 +80,8 @@
 					<button id="grph2011" type="button" class="btn btn-default">2011</button>
 					<button id="grph2010" type="button" class="btn btn-default">2010</button>
 					<button id="grph2009" type="button" class="btn btn-default">2009</button>
-					<button id="grph2008" type="button" class="btn btn-default">2008</button>
-					<button id="grph2007" type="button" class="btn btn-default">2007</button>
-					<button id="grph2006" type="button" class="btn btn-default">2006</button>
-					<button id="grph2005" type="button" class="btn btn-default">2005</button>
-					<button id="grph2004" type="button" class="btn btn-default">2004</button>
-					<button id="grph2003" type="button" class="btn btn-default">2003</button>
-					<button id="grph2002" type="button" class="btn btn-default">2002</button>
-					<button id="grph2001" type="button" class="btn btn-default">2001</button>
-					<button id="grph2000" type="button" class="btn btn-default">2000</button>
-					<button id="grph1999" type="button" class="btn btn-default">1999</button>
-					<button id="grph1998" type="button" class="btn btn-default">1998</button>
-					<button id="grph1997" type="button" class="btn btn-default">1997</button>
-					<button id="grph1996" type="button" class="btn btn-default">1996</button>
-                   
                     <div id="content_btn" style="height:650px;"></div>
-                    
-                   
+
 				</div>
            </div>
            </div>
@@ -121,7 +108,7 @@
     <script src="build/js/custom.min.js"></script>
     <script src="js/d3.v4.min.js"></script>
     <script src="js/d3-selection-multi.v1.js"></script>
-    <script src="js/TNIC2_viz.js"></script>
+ 	<script src="js/SEC_viz.js"></script>
     <script src="js/jquery.auto-complete.min.js"></script>
 
     <script>
@@ -129,7 +116,7 @@
     	$("#company_network").hide();
      	$('.ui-pnotify').remove(); 
      	
-     	$.getJSON("rest/tnic2/company",
+     	$.getJSON("rest/sec/company",
      		function(data) {
      		console.log(data.company);
      		$('#company_search').autoComplete({
@@ -146,42 +133,28 @@
      	});
      	
      	$("#select_company").click(function(){
-     		var company_record = $('#company_search').val();
-     		var company_cik = null;
-     		var company_tsy ='';
-     		if(company_record){
-     			var res = company_record.split("cik:");
+     		var search_company_record = $('#company_search').val();
+     		if(search_company_record){
+     			var res = search_company_record.split(":");
      			if(res.length>1){
-     				var cik_no = res[1].split(" ");
-     				var tsy = res[0].split(" ")
-     				if(cik_no.length>1){
-     					company_cik = cik_no[1];
-     					company_tsy = tsy[0];
+     				var company_record = res[0];
+     				var id = parseInt(res[1]);
+     				console.log("kkkkkkkkkkkkkk :"+id);
+     				if(res.length>1){
      					$("#company_network").show();
-     					$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2015 </h2>");
-     					TNIC2_viz("rest/tnic2/"+company_cik+"/2015","content_btn");
+     					$("#company_header").html("<h2>"+company_record+" : ALL"+"</h2>");
+     						SEC_draw_me("../../FinNetwork/rest/sec/"+company_record,"content_btn",id); 
      					
-     					$("#grph2015").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2015 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2015","content_btn");});
-     					$("#grph2014").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2014 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2014","content_btn");});	
-     					$("#grph2013").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2013 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2013","content_btn");});
-     					$("#grph2012").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2012 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2012","content_btn");});
-     					$("#grph2011").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2011 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2011","content_btn");});
-     					$("#grph2010").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2010 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2010","content_btn");});
-     					$("#grph2009").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2009 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2009","content_btn");});
-     					$("#grph2008").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2008 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2008","content_btn");});
-     					$("#grph2007").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2007 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2007","content_btn");});
-     					$("#grph2006").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2006 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2006","content_btn");});
-     					$("#grph2005").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2005 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2005","content_btn");});
-     					$("#grph2004").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2004 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2004","content_btn");});
-     					$("#grph2003").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2003 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2003","content_btn");});
-     					$("#grph2002").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2002 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2002","content_btn");});
-     					$("#grph2001").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2001 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2001","content_btn");});
-     					$("#grph2000").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 2000 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/2000","content_btn");});
-     					$("#grph1999").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 1999 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/1999","content_btn");});
-     					$("#grph1998").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 1998 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/1998","content_btn");});
-     					$("#grph1997").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 1997 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/1997","content_btn");});
-     					$("#grph1996").click(function(){$("#company_header").html("<h2>"+company_tsy+ " | CIK : " +company_cik+" | Year : 1996 </h2>");TNIC2_viz("rest/tnic2/"+company_cik+"/1996","content_btn");});
-     					
+     					$("#grphALL").click(function(){ $("#company_header").html("<h2>"+company_record+" | Year : ALL </h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record,"content_btn",id);   });
+      					$("#grph2016").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2016</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2016","content_btn",id);});
+      					$("#grph2015").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2015</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2015","content_btn",id);});
+      					$("#grph2014").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2014</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2014","content_btn",id);});
+      					$("#grph2013").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2013</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2013","content_btn",id);});
+      					$("#grph2012").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2012</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2012","content_btn",id);});
+      					$("#grph2011").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2011</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2011","content_btn",id);});
+      					$("#grph2010").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2010</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2010","content_btn",id);});
+      					$("#grph2009").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2009</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2009","content_btn",id);});		
+      					
      				}
      			}
      		}

@@ -11,7 +11,9 @@ import javax.ws.rs.core.Response;
 import org.eclipse.jdt.internal.compiler.flow.InsideSubRoutineFlowContext;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.finnetwork.controllers.SEC_controller;
+import com.finnetwork.controllers.TNIC2_controller;
 
 @Path("/sec")
 public class SEC_data {
@@ -37,6 +39,17 @@ public class SEC_data {
 		JsonNode json_base_network_yearly = sec_controller.getDataYearWise(companyName, year);
 		
 		Response response = Response.ok(json_base_network_yearly, MediaType.APPLICATION_JSON).build();		
+		return response;
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/company")
+	public Response getCompanyData(){
+		SEC_controller sec_controller = new SEC_controller();
+		ObjectNode json_company_data = sec_controller.getCompanyData();
+		Response response = Response.ok(json_company_data.toString(), MediaType.APPLICATION_JSON).build();	
+		System.out.println(json_company_data.toString());
 		return response;
 	}
 }

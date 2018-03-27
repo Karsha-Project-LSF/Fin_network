@@ -1,4 +1,5 @@
 function SEC_draw_me(url,bind_id,company_id,year){
+	
 	d3.select("#"+bind_id).selectAll("svg").remove();
 	console.log(url+" "+bind_id+" "+company_id+" "+year);
     //d3.select("#container").selectAll("svg").remove();
