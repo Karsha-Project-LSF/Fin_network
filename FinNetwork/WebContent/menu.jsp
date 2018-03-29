@@ -27,7 +27,7 @@
 					<ul class="nav side-menu">
 							<li><a><i class="fa fa-sitemap"></i> 8 sample companies <span class="fa fa-chevron-down"></span></a>
 								<ul class="nav child_menu">
-									<li><a><i class="fa fa-sitemap"></i> SEC <span
+									<li><a><i class="fa fa-database"></i> SEC <span
 										class="fa fa-chevron-down"></span></a>
 											<ul class="nav child_menu">
 												<%
@@ -60,7 +60,7 @@
 										</li>
 										<li>
 											<a href="#"> 
-												<i class="fa fa-sitemap" aria-hidden="true"></i>Thomson Reuters <span
+												<i class="fa fa-database" aria-hidden="true"></i>Thomson Reuters <span
 												class="fa fa-chevron-down"></span>
 											</a>
 											<ul class="nav child_menu">
@@ -90,7 +90,7 @@
 											%>
 											</ul>
 										</li> 
-										<li><a><i class="fa fa-sitemap"></i> OpenCorporates <span
+										<li><a><i class="fa fa-database"></i> OpenCorporates <span
 												class="fa fa-chevron-down"></span></a>
 												<ul class="nav child_menu">
 												<%
@@ -122,7 +122,7 @@
 										</li>
 											<li>
 											<a href="#"> 
-												<i class="fa fa-sitemap" aria-hidden="true"></i> TNIC<span
+												<i class="fa fa-database" aria-hidden="true"></i> TNIC<span
 												class="fa fa-chevron-down"></span>
 											</a>
 											<ul class="nav child_menu">
