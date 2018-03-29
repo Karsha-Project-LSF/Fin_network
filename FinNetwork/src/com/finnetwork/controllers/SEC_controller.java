@@ -25,7 +25,7 @@ public class SEC_controller {
 		List sourceList = querysource.list();
 		System.out.println(companyName + " has id : " + sourceList.get(0));	
 		
-		Query queryLink = session.createQuery("FROM SEC_Link WHERE source = :sourceID");
+		Query queryLink = session.createQuery("FROM SEC_Link WHERE source = :sourceID and Role like 'comp%'");
 		queryLink.setParameter("sourceID", sourceList.get(0));
 		List<SEC_Link> sec_links = queryLink.list();
 		System.out.println(sec_links.size());

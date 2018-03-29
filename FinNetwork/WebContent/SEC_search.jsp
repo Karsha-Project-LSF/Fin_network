@@ -78,8 +78,6 @@
 					<button id="grph2013" type="button" class="btn btn-default">2013</button>
 					<button id="grph2012" type="button" class="btn btn-default">2012</button>
 					<button id="grph2011" type="button" class="btn btn-default">2011</button>
-					<button id="grph2010" type="button" class="btn btn-default">2010</button>
-					<button id="grph2009" type="button" class="btn btn-default">2009</button>
                     <div id="content_btn" style="height:650px;"></div>
 
 				</div>
@@ -152,8 +150,6 @@
       					$("#grph2013").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2013</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2013","content_btn",id);});
       					$("#grph2012").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2012</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2012","content_btn",id);});
       					$("#grph2011").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2011</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2011","content_btn",id);});
-      					$("#grph2010").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2010</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2010","content_btn",id);});
-      					$("#grph2009").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2009</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2009","content_btn",id);});		
       					
      				}
      			}
