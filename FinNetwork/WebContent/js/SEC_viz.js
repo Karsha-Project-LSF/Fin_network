@@ -1,9 +1,10 @@
 function SEC_draw_me(url,bind_id,company_id,year){
 	
 	d3.select("#"+bind_id).selectAll("svg").remove();
-	console.log(url+" "+bind_id+" "+company_id+" "+year);
+	//console.log(url+" "+bind_id+" "+company_id+" "+year);
     //d3.select("#container").selectAll("svg").remove();
     //var graphDiv = document.getElementById("container");
+	
 	var graphDiv = document.getElementById(bind_id);
     var svg = d3.select(graphDiv).append("svg")
                             .attr('width', '100%')
@@ -34,14 +35,14 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
         .force("center", d3.forceCenter(width / 2, height / 2));
 
     d3.json(url, function(error, graph) {
-    	
+    	console.log("llllllllllll :"+url);
         if (error) {
         	console.log(error);
         	throw error;
         }
-		
+       
 		var modify_graph = {nodes:[], links:[]};
-        Array.prototype.push.apply(modify_graph.links,graph.links.filter(function(d){return d.source === company_id | d.target == company_id;}));
+        Array.prototype.push.apply(modify_graph.links,graph.links.filter(function(d){return (d.source == company_id | d.target == company_id);}));
         //console.log(modify_graph);
         var temp_nodes = new Array();
             
@@ -61,8 +62,8 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
 			};
 		
 		
-			console.log('modify graph nodes', modify_graph);
-			console.log('graph nodes', graph);
+			//console.log('modify graph nodes', modify_graph);
+			//console.log('graph nodes', graph);
 			//console.log(temp_nodes);
 		var nodes = modify_graph.nodes,
            nodeById = d3.map(nodes, function(d) { return d.id; }),
@@ -210,7 +211,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
                 return thisOpacity;
             });
             link.style("stroke-opacity", function(o) {
-                console.log(o);
+               
                 return o[0].id === d.id || o[2].id === d.id ? 1 : opacity;
             });
             link.attr('marker-end',function(o){
@@ -288,7 +289,41 @@ function predicate_filter(a){
     return prd;
 }
 
+function init_Edgefilter(url){
+	var link_types =[];
+	d3.json(url, function(error, graph) {
+        if (error){
+        	console.log("error ..... : ");
+        	new PNotify({
+                title: 'NO Records Available !',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+        	throw error;
+        }
+    graph.links.forEach(function(link) {
+        var pred = link.role = link.role;
+        	link_types.push(pred);
+    });
+    var edgeLabel;
+   
+    var edge_cat = unique(link_types).slice();
+	console.log("types of links :"+edge_cat);
+	
+	for (var i=0;i<edge_cat.length;i++){
+		var opt = $('<option/>').val(edge_cat[i]).attr('id', edge_cat[i]).html(edge_cat[i]);
+		if(!$('#'+edge_cat[i]).length){
+			opt.appendTo('#edge_filter');
+		}
+	}
+    });
 }
-function a(){
-	console.log("me balapan yakoo");
+function unique(array) {
+    return $.grep(array, function(el, index) {
+        return index == $.inArray(el, array);
+    });
 }
+
+init_Edgefilter(url);
+}
+

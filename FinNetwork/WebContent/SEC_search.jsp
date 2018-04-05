@@ -68,6 +68,15 @@
            <div id="company_network" class="x_panel" >
            		<div class="x_title">
                     <h2 id="company_header" ></h2>
+                    <div class="pull-right">
+                     <div class="form-group">
+                        <div class="col-md-12 col-sm-9 col-xs-12">
+                          <select id="edge_filter" class="form-control">
+                          <option>All</option>
+                          </select>
+                        </div>
+                     </div>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -114,6 +123,7 @@
     	$("#company_network").hide();
      	$('.ui-pnotify').remove(); 
      	
+     	
      	$.getJSON("rest/sec/company",
      		function(data) {
      		console.log(data.company);
@@ -131,36 +141,51 @@
      	});
      	
      	$("#select_company").click(function(){
+     		$('#edge_filter').val("ALL");
      		var search_company_record = $('#company_search').val();
+     		var edgeLabel_param = "ALL";
+     		process_sec(search_company_record,edgeLabel_param);
+     		$('#edge_filter').on('change', function() {
+         		edgeLabel_param = this.value;
+         		process_sec(search_company_record,edgeLabel_param);
+        		
+        	});
+     		
+     	});
+     		
+     	function process_sec(search_company_record,edgeLabel_param){
      		if(search_company_record){
      			var res = search_company_record.split(":");
      			if(res.length>1){
      				var company_record = res[0];
      				var id = parseInt(res[1]);
-     				console.log("kkkkkkkkkkkkkk :"+id);
      				if(res.length>1){
      					$("#company_network").show();
      					$("#company_header").html("<h2>"+company_record+" : ALL"+"</h2>");
-     						SEC_draw_me("../../FinNetwork/rest/sec/"+company_record,"content_btn",id); 
+     						SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"?Role="+edgeLabel_param,"content_btn",id); 
      					
-     					$("#grphALL").click(function(){ $("#company_header").html("<h2>"+company_record+" | Year : ALL </h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record,"content_btn",id);   });
-      					$("#grph2016").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2016</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2016","content_btn",id);});
-      					$("#grph2015").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2015</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2015","content_btn",id);});
-      					$("#grph2014").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2014</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2014","content_btn",id);});
-      					$("#grph2013").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2013</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2013","content_btn",id);});
-      					$("#grph2012").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2012</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2012","content_btn",id);});
-      					$("#grph2011").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2011</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2011","content_btn",id);});
+     					$("#grphALL").click(function(){ $("#company_header").html("<h2>"+company_record+" | Year : ALL </h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"?Role="+edgeLabel_param,"content_btn",id);   });
+      					$("#grph2016").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2016</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2016"+"?Role="+edgeLabel_param,"content_btn",id);});
+      					$("#grph2015").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2015</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2015"+"?Role="+edgeLabel_param,"content_btn",id);});
+      					$("#grph2014").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2014</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2014"+"?Role="+edgeLabel_param,"content_btn",id);});
+      					$("#grph2013").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2013</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2013"+"?Role="+edgeLabel_param,"content_btn",id);});
+      					$("#grph2012").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2012</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2012"+"?Role="+edgeLabel_param,"content_btn",id);});
+      					$("#grph2011").click(function(){$("#company_header").html("<h2>"+company_record+" | Year : 2011</h2>");SEC_draw_me("../../FinNetwork/rest/sec/"+company_record+"/2011"+"?Role="+edgeLabel_param,"content_btn",id);});
       					
      				}
      			}
      		}
+     	}
+     	
+     		
+     		
      		
      					
      					
      		
      		
      		//console.log(company_cik+"  "+ company_tsy);
-     	});
+     	
     	
      	
      	//TNIC2_viz("rest/sec/ADP/2013","content_2015");

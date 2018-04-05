@@ -14,7 +14,7 @@ import com.finnetwork.persistence.hibernate_util;
 
 public class SEC_controller {
 
-	public ObjectNode getBaseNetwork(String companyName) {
+	public ObjectNode getBaseNetwork(String companyName,String role) {
 		System.out.println("Requested company : " + companyName);
 		
 		Session session = hibernate_util.getSession();
@@ -24,14 +24,25 @@ public class SEC_controller {
 		querysource.setParameter("companyName", companyName);
 		List sourceList = querysource.list();
 		System.out.println(companyName + " has id : " + sourceList.get(0));	
+		Query queryLink;
+		if(role.equalsIgnoreCase("all")){
+			queryLink = session.createQuery("FROM SEC_Link WHERE source = :sourceID");
+			queryLink.setParameter("sourceID", sourceList.get(0));
+			System.out.println("SEC ALL.................");
+		}else{
+			queryLink = session.createQuery("FROM SEC_Link WHERE source = :sourceID and Role = :role");
+			queryLink.setParameter("sourceID", sourceList.get(0));
+			queryLink.setParameter("role", role);
+			System.out.println("SEC "+role+".................");
+		}
 		
-		Query queryLink = session.createQuery("FROM SEC_Link WHERE source = :sourceID and Role like 'comp%'");
-		queryLink.setParameter("sourceID", sourceList.get(0));
+		
 		List<SEC_Link> sec_links = queryLink.list();
 		System.out.println(sec_links.size());
 		
-		Query querytargets = session.createQuery("SELECT DISTINCT target FROM SEC_Link WHERE source = :sourceID");
+		Query querytargets = session.createQuery("SELECT DISTINCT target FROM SEC_Link WHERE source = :sourceID ");
 		querytargets.setParameter("sourceID", sourceList.get(0));
+		
 		List targetList = querytargets.list();
 		System.out.println("target size : " + targetList.size());
 		
@@ -57,7 +68,7 @@ public class SEC_controller {
 		return base_network;
 	}
 	
-	public ObjectNode getDataYearWise(String companyName, int year) {
+	public ObjectNode getDataYearWise(String companyName, int year,String role) {
 		System.out.println("requested company : " + companyName + ", year : " + year);
 		
 		Session session = hibernate_util.getSession();
@@ -68,9 +79,21 @@ public class SEC_controller {
 		List sourceList = querysource.list();
 		System.out.println(companyName + " has id : " + sourceList.get(0));	
 		
-		Query queryLink = session.createQuery("FROM SEC_Link WHERE source = :sourceID AND year = :year");
-		queryLink.setParameter("sourceID", sourceList.get(0));
-		queryLink.setParameter("year", year);
+		
+		Query queryLink;
+		if(role.equalsIgnoreCase("all")){
+			queryLink = session.createQuery("FROM SEC_Link WHERE source = :sourceID AND year = :year");
+			queryLink.setParameter("sourceID", sourceList.get(0));
+			queryLink.setParameter("year", year);
+			System.out.println("SEC ALL.................");
+		}else{
+			queryLink = session.createQuery("FROM SEC_Link WHERE source = :sourceID AND year = :year AND Role =:role");
+			queryLink.setParameter("sourceID", sourceList.get(0));
+			queryLink.setParameter("year", year);
+			queryLink.setParameter("role", role);
+			System.out.println("SEC "+role+".................");
+		}
+		
 		List<SEC_Link> sec_links = queryLink.list();
 		System.out.println(sec_links.size());
 		
