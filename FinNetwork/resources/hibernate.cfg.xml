@@ -6,7 +6,7 @@
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fin_network</property>
   <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.connection.password"></property> 
+  <property name="hibernate.connection.password">tharindu</property> 
    
   <!-- <property name="hibernate.connection.url">jdbc:mysql://clipdb-karsha.umiacs.umd.edu:3306/fin_network</property>
   <property name="hibernate.connection.username">karsha</property>
@@ -27,6 +27,7 @@
   <mapping class="com.finnetwork.models.Link" resource="com/finnetwork/models/Link.hbm.xml"/>
   <mapping class="com.finnetwork.models.FeiiiY2Working" resource="com/finnetwork/models/FeiiiY2Working.hbm.xml"/>
   
+  <mapping class="com.finnetwork.models.Sector51_comp" resource="com/finnetwork/models/Sector51_comp.hbm.xml"/>
   <mapping class="com.finnetwork.models.SEC_Node" resource="com/finnetwork/models/SEC_Node.hbm.xml"/>
   <mapping class="com.finnetwork.models.SEC_Link" resource="com/finnetwork/models/SEC_Link.hbm.xml"/>
   <mapping class="com.finnetwork.models.TR_Node" resource="com/finnetwork/models/TR_Node.hbm.xml"/>
@@ -38,5 +39,6 @@
   <mapping class="com.finnetwork.models.SEC_Node" resource="com/finnetwork/models/OC_Node.hbm.xml"/>
   <mapping class="com.finnetwork.models.TRDF_gt_Node" resource="com/finnetwork/models/TRDF_gt_Node.hbm.xml"/>
   <mapping class="com.finnetwork.models.TRDF_gt_Link" resource="com/finnetwork/models/TRDF_gt_Link.hbm.xml"/>
+  <mapping class="com.finnetwork.models.TRDF_gt_Link211" resource="com/finnetwork/models/TRDF_gt_Link211.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

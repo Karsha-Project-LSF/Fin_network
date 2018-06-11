@@ -25,4 +25,16 @@ public class SearchCompanies {
 		return response;
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/sector51")
+	public Response getResponse() {
+		
+		SearchController searchController = new SearchController();
+		JsonNode jsonsector51 = searchController.Search_sector51();
+		Response response = Response.ok(jsonsector51, MediaType.APPLICATION_JSON).build();
+		return response;
+		
+	}
+	
 }

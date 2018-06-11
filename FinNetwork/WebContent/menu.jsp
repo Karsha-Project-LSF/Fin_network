@@ -160,7 +160,9 @@
 									<li><a href="TNIC_search.jsp" id="sid_14">TNIC Search</a></li>
 								</ul>
 							</li>
-					
+						<li><a href="Sector51.jsp"> <i
+								class="fa fa-database" aria-hidden="true"></i> Sector 51
+						</a></li>
 						
 						<li><a href="http://opensource.lk/"> <i
 								class="fa fa-users" aria-hidden="true"></i> People

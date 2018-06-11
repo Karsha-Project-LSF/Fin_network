@@ -29,6 +29,17 @@ public class TRDF_gt {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("sec51/{id}/{edgeLabel}")
+	public Response sec51getNetworkFiltered(@PathParam("id") String id,@PathParam("edgeLabel") String edgeLabel) {
+		System.out.println("inside getBaseNetwork TRDF_gt filtered output");
+		TRDF_gt_controller trdf_gt_controller = new TRDF_gt_controller();
+		JsonNode json_base_network = trdf_gt_controller.getBaseNetwork(id,edgeLabel,"sec51");		
+		Response response = Response.ok(json_base_network, MediaType.APPLICATION_JSON).build();		
+		return response;
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}/{edgeLabel}")
 	public Response getNetworkFiltered(@PathParam("id") String id,@PathParam("edgeLabel") String edgeLabel) {
 		System.out.println("inside getBaseNetwork TRDF_gt filtered output");

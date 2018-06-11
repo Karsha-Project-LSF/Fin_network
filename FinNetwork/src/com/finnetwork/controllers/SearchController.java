@@ -13,9 +13,28 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.finnetwork.models.CompanyData;
 import com.finnetwork.models.ConnectionsForYear;
+import com.finnetwork.models.Sector51_comp;
 import com.finnetwork.persistence.hibernate_util;
 
 public class SearchController {	
+	
+	public static ObjectNode Search_sector51(){
+		System.out.println("call for search sector 51");
+		Session session = hibernate_util.getSession();
+		session.beginTransaction();
+		Query sector51 = session.createQuery("From Sector51_comp");
+		List<Sector51_comp> sector51_comp = sector51.list();		
+		
+		session.close();
+		System.out.println("kkkkkkkkkkkkk : "+sector51_comp.size());
+		
+		ObjectMapper mapper = new ObjectMapper();
+		ArrayNode arrayData = mapper.valueToTree(sector51_comp);
+		ObjectNode finalOutput = mapper.createObjectNode();
+		finalOutput.putArray("sector51").addAll(arrayData);	
+		
+		return finalOutput;
+	}
 	
 	public static List<String> searchCompanies() {
 		System.out.println("Call for Search Comapanies ...");	

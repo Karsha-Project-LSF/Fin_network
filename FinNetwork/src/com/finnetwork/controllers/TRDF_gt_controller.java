@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.finnetwork.models.TNIC2_Link;
 import com.finnetwork.models.TNIC2_Node;
 import com.finnetwork.models.TRDF_gt_Link;
+import com.finnetwork.models.TRDF_gt_Link211;
 import com.finnetwork.models.TRDF_gt_Node;
 import com.finnetwork.persistence.hibernate_util;
 
@@ -86,6 +87,40 @@ public class TRDF_gt_controller {
 		return base_network;
 	}
 	
+	public JsonNode getBaseNetwork(String id, String edgeLabel,String secCat) {
+		System.out.println("Requested company TRDF_gt sec51: " + id +" edgeLabel :"+edgeLabel);
+
+		Session session = hibernate_util.getSession();
+		session.beginTransaction();
+
+		Query querysource = session
+				.createQuery("FROM TRDF_gt_Link211 t WHERE ((source = :id ) OR (target = :id )) AND predicate= :edgeLabel");
+		querysource.setParameter("id", id);
+		querysource.setParameter("edgeLabel", edgeLabel);
+		
+		List<TRDF_gt_Link211> trdf_gt_edges = querysource.list();
+		System.out.println("done......");
+		//System.out.println("query out put :"+trdf_gt_edges.size()+" : "+id);
+		TRDF_gt_controller tnic_con = new TRDF_gt_controller();
+		Set<String> nodeSet = tnic_con.node_list1(trdf_gt_edges);
+		
+		Query querynodes =session.createQuery("FROM TRDF_gt_Node WHERE company_id in(:ids)");
+		querynodes.setParameterList("ids", nodeSet);
+		List<TRDF_gt_Node> trdf_gt_nodes = querynodes.list();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayNode arrayNode = objectMapper.valueToTree(trdf_gt_nodes);
+		ArrayNode arrayLink = objectMapper.valueToTree(trdf_gt_edges);
+		ObjectNode base_network = objectMapper.createObjectNode();
+		base_network.putArray("nodes").addAll(arrayNode);
+		base_network.putArray("links").addAll(arrayLink);
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return base_network;
+	}
+	
 	public ObjectNode getCompanyData() {
 		System.out.println("Requested company data TRDF_gt ");
 
@@ -110,6 +145,16 @@ public class TRDF_gt_controller {
 	public Set<String> node_list(List<TRDF_gt_Link> nodes){
 		Set<String> node_set = new HashSet<>();
 		for (TRDF_gt_Link entity : nodes) {
+			//System.out.println("oooo "+ entity.getSource());
+			node_set.add(entity.getSource());
+			node_set.add(entity.getTarget());
+		}
+		System.out.println("lllllllllll :"+node_set.size()+" : "+nodes.size());
+		return node_set;
+	}
+	public Set<String> node_list1(List<TRDF_gt_Link211> nodes){
+		Set<String> node_set = new HashSet<>();
+		for (TRDF_gt_Link211 entity : nodes) {
 			//System.out.println("oooo "+ entity.getSource());
 			node_set.add(entity.getSource());
 			node_set.add(entity.getTarget());
