@@ -19,6 +19,36 @@ import com.finnetwork.models.TR_Node;
 import com.finnetwork.persistence.hibernate_util;
 
 public class TNIC2_controller {
+	public ObjectNode getBaseNetwork_annual_Sec51(String cik) {
+		System.out.println("Requested company TNIC2: " + cik + " ");
+
+		Session session = hibernate_util.getSession();
+		session.beginTransaction();
+
+		Query querysource = session
+				.createQuery("FROM TNIC2_Link WHERE (CIK_1 = :cik ) AND (year= 2013 OR year =2014 OR year=2015)");
+		querysource.setParameter("cik", cik);
+	
+		List<TNIC2_Link> tnic2_edges = querysource.list();
+		
+		TNIC2_controller tnic_con = new TNIC2_controller();
+		Set<String> nodeSet = tnic_con.node_list(tnic2_edges);
+		
+		Query querynodes =session.createQuery("FROM TNIC2_Node WHERE cik in(:ciks)");
+		querynodes.setParameterList("ciks", nodeSet);
+		List<TNIC2_Node> tnic2_nodes = querynodes.list();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayNode arrayNode = objectMapper.valueToTree(tnic2_nodes);
+		ArrayNode arrayLink = objectMapper.valueToTree(tnic2_edges);
+		ObjectNode base_network = objectMapper.createObjectNode();
+		base_network.putArray("nodes").addAll(arrayNode);
+		base_network.putArray("links").addAll(arrayLink);
+		session.getTransaction().commit();
+		session.close();
+		return base_network;
+	}
+	
 	public ObjectNode getBaseNetwork_annual(String cik, int year) {
 		System.out.println("Requested company TNIC2: " + cik + " " + year);
 

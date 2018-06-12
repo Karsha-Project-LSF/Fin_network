@@ -88,25 +88,29 @@
                     <h2 id="company_header" ></h2>
                     <div class="clearfix"></div>
                 </div>
+                
                 <div class="x_content">
-          			<div class="" role="tabpanel" data-example-id="togglable-tabs">
+          			
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#TRDF_sh" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">TRDF</a>
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">TRDF</a>
                         </li>
-                        <li role="presentation" class=""><a href="#APP_sh" role="tab" id="APP_sh" data-toggle="tab" aria-expanded="false">Additional Participant Prediction</a>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Additional Participant Prediction</a>
                         </li>
-                        <li role="presentation" class=""><a href="#TNIC_sh" role="tab" id="TNIC_sh" data-toggle="tab" aria-expanded="false">TNIC</a>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">TNIC</a>
                         </li>
                       </ul>
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                        	<div id="TRDFcontent" style="height:650px;"></div>
+                           <div id="TRDFcontent" style="height:650px;"></div>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="APP_sh" aria-labelledby="profile-tab">
-                          <div id="content_btn" style="height:650px;"></div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                          <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                            booth letterpress, commodo enim craft beer mlkshk aliquip</p>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="TNIC_sh" aria-labelledby="profile-tab">
-                          <div id="content_btn" style="height:650px;"></div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                          <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                            booth letterpress, commodo enim craft beer mlkshk </p>
                         </div>
                       </div>
                     </div>
@@ -137,6 +141,7 @@
     <script src="js/d3.v4.min.js"></script>
     <script src="js/d3-selection-multi.v1.js"></script>
  	<script src="js/TRDF_gt_vizSec51.js"></script>
+ 	<script src="js/TNIC2_viz.js"></script>
     <script src="js/jquery.auto-complete.min.js"></script>
 
 	<script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -155,8 +160,8 @@
     <script>
      function draw_graph_palate (data){
    	 	$("#company_header").text(data.name);
-   	 TRDF_gt_vizSec51("rest/trdf_gt/sec51/"+data.trdf_id,"TRDFcontent","isCompetitorOf");
-   	 	
+   	 	TRDF_gt_vizSec51("rest/trdf_gt/sec51/"+data.trdf_id,"TRDFcontent","isCompetitorOf");
+   	 	//TNIC2_viz("rest/tnic2/"+cik_manipulate(data.cik,10),"TNICcontent");
      } 
     
      $(document).ready(function (){
@@ -188,7 +193,14 @@
      	
      });
      
-     
+     function cik_manipulate(num,length){
+    	 var r = "" + num;
+    	    while (r.length < length) {
+    	        r = "0" + r;
+    	    }
+    	    console.log(r);
+    	    return r;
+     }
      
     </script>
 
