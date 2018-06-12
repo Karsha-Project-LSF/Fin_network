@@ -40,5 +40,7 @@
   <mapping class="com.finnetwork.models.TRDF_gt_Node" resource="com/finnetwork/models/TRDF_gt_Node.hbm.xml"/>
   <mapping class="com.finnetwork.models.TRDF_gt_Link" resource="com/finnetwork/models/TRDF_gt_Link.hbm.xml"/>
   <mapping class="com.finnetwork.models.TRDF_gt_Link211" resource="com/finnetwork/models/TRDF_gt_Link211.hbm.xml"/>
+  <mapping class="com.finnetwork.models.APP_Node" resource="com/finnetwork/models/APP_Node.hbm.xml"/>
+  <mapping class="com.finnetwork.models.APP_Link" resource="com/finnetwork/models/APP_Link.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

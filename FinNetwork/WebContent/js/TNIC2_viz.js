@@ -1,7 +1,7 @@
 
 
 function TNIC2_viz(url,tag){
-	
+	console.log(url);
 	d3.select("#"+tag).selectAll("svg").remove();
 	
 	previous_tag = tag;

@@ -10,37 +10,48 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "APP_nodes", catalog = "fin_network")
-public class TR_Node {
+public class APP_Node {
 	
-	private double id;
-	private String equity;
+	private int id;
+	private String name;
+	private String cik;
 	
-	public TR_Node() {
+	public APP_Node() {
 	
 	}
 	
-	public TR_Node(double id, String equity) {
+	public APP_Node(int id, String name,String cik) {
 		this.id = id;
-		this.equity = equity;
+		this.name = name;
+		this.cik = cik;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	public double getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(double id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	@Column(name = "equity")
-	public String getEquity() {
-		return equity;
+	@Column(name = "name")
+	public String getName() {
+		return name;
 	}
 
-	public void setEquity(String equity) {
-		this.equity = equity;
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Column(name = "cik")
+	public String getcik() {
+		return cik;
+	}
+
+	public void setcik(String cik) {
+		this.cik = cik;
 	}
 }
