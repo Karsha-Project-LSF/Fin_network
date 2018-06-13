@@ -33,6 +33,11 @@
        position: relative;
        overflow: hidden;
       }
+     
+     .active1{
+		    background-color: #52B9FA;
+		    color: white;
+		}
     </style>
 </head>
 <body class="nav-md">
@@ -66,7 +71,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                   <table id="datatable1" class="table table-striped table-bordered">
+                   <table id="datatable1" class="table table-bordered">
                       <thead>
                         <tr>
                        	  <th>No.</th>
@@ -169,6 +174,7 @@
     	$("#company_network").hide();
      	$('.ui-pnotify').remove(); 
      	var table = $('#datatable1').DataTable( {
+     		
      		"ajax": {
                 "url": "rest/SearchCompanies/sector51",
                 "dataSrc": "sector51"
@@ -185,16 +191,44 @@
         } );
      	
      	$('#datatable1 tbody').on('click', 'tr', function () {
+     		
+     		if ( $(this).hasClass('active1') ) {
+                $(this).removeClass('active1');
+            }
+            else {
+                table.$('tr.active1').removeClass('active1');
+                $(this).addClass('active1');
+            }
+     		
             var data = table.row( this ).data();
             draw_graph_palate(data);
+            
+            
+            
+            
             $("#company_network").show();
+        	
+            $("#TRDF_tab").click(function(){
+            	console.log("tab clicker trdf");
+            	TRDF_gt_vizSec51("rest/trdf_gt/sec51/"+data.trdf_id,"TRDFcontent","isCompetitorOf");
+            	
+            });
+            $("#TNIC_tab").click(function(){
+            	console.log("tab clicker trdf");
+            	TNIC2_viz("rest/tnic2/"+cik_manipulate(data.cik,10),"TNICcontent");
+            	
+            });	
+            $("#APP_tab").click(function(){
+            	console.log("tab clicker trdf");
+            	APP_viz("rest/APP/"+cik_manipulate(data.cik,10),"APPcontent");
+            	
+            });	
         	
 
             
         } );
      	
-          		
-     	
+         
      	
      	
      });

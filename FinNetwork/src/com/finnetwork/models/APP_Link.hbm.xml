@@ -14,6 +14,9 @@
         <property name="CIK_2" type="java.lang.String">
             <column name="CIK_2" />
         </property>
+         <property name="hasTnic" type="int">
+            <column name="hasTnic" />
+        </property>
         
     </class>
 </hibernate-mapping>

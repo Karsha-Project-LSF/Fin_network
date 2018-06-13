@@ -130,10 +130,10 @@ function TNIC2_viz(url,tag){
     .attr('xlink:href', function (d, i) {return '#edgepath' + i})
     .style("text-anchor", "middle")
     .style("pointer-events", "none")
-    .attr("startOffset", "50%")
-    .text(function(d){
-    	return d[3];
-    });
+    .attr("startOffset", "50%");
+//    .text(function(d){
+//    	return d[3];
+//    });
 
 
 

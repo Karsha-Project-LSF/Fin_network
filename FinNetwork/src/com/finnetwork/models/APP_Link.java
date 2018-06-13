@@ -15,7 +15,7 @@ public class APP_Link {
 	private int id;
 	private String CIK_1;
 	private String CIK_2;
-	
+	private int hasTnic;
 	
 	public APP_Link() {
 		
@@ -52,6 +52,15 @@ public class APP_Link {
 
 	public void setCIK_2(String CIK_2) {
 		this.CIK_2 = CIK_2;
+	}
+	
+	@Column(name = "hasTnic")
+	public int getHasTnic() {
+		return hasTnic;
+	}
+
+	public void setHasTnic(int hasTnic) {
+		this.hasTnic = hasTnic;
 	}
 	
 }

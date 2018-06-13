@@ -13,9 +13,9 @@ function APP_viz(url,tag){
 
     var width = graphDiv.clientWidth;
     var height = graphDiv.clientHeight;
-   /* var color = d3.scaleLinear()
-					.domain([0, 0.9])
-					.range(["red", "green"]);*/
+    var color = d3.scaleLinear()
+					.domain([0, 1])
+					.range(["red", "black"]);
     
     svg.append('defs').append('marker')
     .attrs({'id':'arrowhead',
@@ -59,18 +59,18 @@ function APP_viz(url,tag){
                 t = link.target = nodeById.get(link.cik_2),
                 i = {}
                 pred = link.predicts = link.score;
-                yr = link.year = link.year// intermediate node
+                hasTnic = link.hasTnic = link.hasTnic// intermediate node
             nodes.push(i);
             links.push({source: s, target: i}, {source: i, target: t});
-            bilinks.push([s, i, t,pred,yr]);
+            bilinks.push([s, i, t,pred,hasTnic]);
         });
        
         var link = svg.selectAll(".link")
             .data(bilinks)
             .enter().append("path")
             .attr("class", "link")
-            .attr("stroke","#bbb")
-            //.attr("stroke",function(d) {return color(d[3]);})
+           // .attr("stroke","#bbb")
+            .attr("stroke",function(d) {console.log("hrhrh : "+d[1].name);  return color(d[4]);})
             .attr("fill","none")
             .attr('marker-end','url(#arrowhead)')
             .on('mouseover', edge_mouseover)
@@ -130,10 +130,7 @@ function APP_viz(url,tag){
     .attr('xlink:href', function (d, i) {return '#edgepath' + i})
     .style("text-anchor", "middle")
     .style("pointer-events", "none")
-    .attr("startOffset", "50%")
-    .text(function(d){
-    	return d[3];
-    });
+    .attr("startOffset", "50%");
 
 
 
