@@ -22,11 +22,11 @@ public class SearchController {
 		System.out.println("call for search sector 51");
 		Session session = hibernate_util.getSession();
 		session.beginTransaction();
-		Query sector51 = session.createQuery("From Sector51_comp");
+		Query sector51 = session.createQuery("From Sector51_comp f ORDER BY f.ticker_symbol");
 		List<Sector51_comp> sector51_comp = sector51.list();		
 		
 		session.close();
-		System.out.println("kkkkkkkkkkkkk : "+sector51_comp.size());
+		System.out.println(sector51_comp.size());
 		
 		ObjectMapper mapper = new ObjectMapper();
 		ArrayNode arrayData = mapper.valueToTree(sector51_comp);

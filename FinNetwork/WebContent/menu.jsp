@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+	
 </head>
 <body>
 	<div class="col-md-3 left_col">
@@ -160,9 +161,10 @@
 									<li><a href="TNIC_search.jsp" id="sid_14">TNIC Search</a></li>
 								</ul>
 							</li>
-						<li><a href="Sector51.jsp"> <i
-								class="fa fa-database" aria-hidden="true"></i> Sector 51
-						</a></li>
+						 <li><a><i class="fa fa-sitemap"></i> Sector 51 TRDF <span class="fa fa-chevron-down"></span></a>
+		                    <ul id="sector51_menu" class="nav child_menu">
+		                    </ul>
+		                  </li>
 						
 						<li><a href="http://opensource.lk/"> <i
 								class="fa fa-users" aria-hidden="true"></i> People
@@ -175,5 +177,16 @@
 
 		</div>
 	</div>
+	<script src="vendors/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript">
+		$.get("rest/SearchCompanies/sector51", function(data, status){
+			for(var i = 0; i<data.sector51.length; i++){
+				$('#sector51_menu').append('<li><a href="Sector51.jsp?T_symbol='+data.sector51[i].ticker_symbol+'&TRDF_id='+data.sector51[i].trdf_id+'&cik='+data.sector51[i].cik+'">'+data.sector51[i].ticker_symbol +'</a></li>');
+			}
+			
+	    }).fail(function(err, status) {
+	    	   console.log("faill to read data for sector 51 company details. ")
+	    });
+	</script>
 </body>
 </html>
