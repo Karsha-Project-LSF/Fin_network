@@ -161,7 +161,7 @@
 									<li><a href="TNIC_search.jsp" id="sid_14">TNIC Search</a></li>
 								</ul>
 							</li>
-						 <li><a><i class="fa fa-sitemap"></i> Sector 51 TRDF <span class="fa fa-chevron-down"></span></a>
+						 <li><a><i class="fa fa-sitemap"></i> Sector 51 <span class="fa fa-chevron-down"></span></a>
 		                    <ul id="sector51_menu" class="nav child_menu">
 		                    </ul>
 		                  </li>

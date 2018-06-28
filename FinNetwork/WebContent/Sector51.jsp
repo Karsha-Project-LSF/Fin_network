@@ -85,7 +85,7 @@
 						<div class="x_content">
 							<button id="TRDF" type="button" class="btn btn-default">TRDF</button>
 		                	<button id="APP" type="button" class="btn btn-default">Additional Participant Predictions [
-		                	<span><i class="fa fa-square" style="color:red"> : Not in TNIC</i>  <i class="fa fa-square"> : Has in TNIC</i></span>
+		                	<span><i class="fa fa-square" style="color:red"> : Not in TNIC</i> </span>
 		                	 ]</button>
 		                	<button id="TNIC" type="button" class="btn btn-default">TNIC</button>
 		                	
