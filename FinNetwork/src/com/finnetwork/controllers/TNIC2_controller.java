@@ -49,6 +49,58 @@ public class TNIC2_controller {
 		return base_network;
 	}
 	
+	
+	public ObjectNode getBaseNetwork_annual_Sec51(String cik, String nodup) {
+		System.out.println("ppppppppppppppppppppppppppp");
+
+		Session session = hibernate_util.getSession();
+		session.beginTransaction();
+
+		Query querysource = session
+				.createQuery("FROM TNIC2_Link WHERE (CIK_1 = :cik ) AND (year= 2013 OR year =2014 OR year=2015)");
+		querysource.setParameter("cik", cik);
+		List<TNIC2_Link> tnic2_edges = querysource.list();
+		List<TNIC2_Link> tnic2_edges_final = new ArrayList<>();
+		
+		Set<String> distinct_edges = new HashSet<String>();
+		for (TNIC2_Link t : tnic2_edges) {
+			distinct_edges.add(t.getCIK_1()+"-"+t.getCIK_2());
+		}
+		List<String> distinct_edges_list = new ArrayList<String>(distinct_edges);
+		
+		for (int i = 0; i < distinct_edges_list.size(); i++) {
+			for (TNIC2_Link t : tnic2_edges) {
+				String tmp = t.getCIK_1()+"-"+t.getCIK_2();
+				if(tmp.equals(distinct_edges_list.get(i))) {
+					tnic2_edges_final.add(t);
+					break;
+				}
+			}
+		}
+		//System.out.println(tnic2_edges.size()+"OOOOOOOOOOOOOOOO"+distinct_edges.size());
+		System.out.println("kkkkkkkkkkkkkkkkkkkkkkk : "+tnic2_edges_final.size());
+		
+		TNIC2_controller tnic_con = new TNIC2_controller();
+		Set<String> nodeSet = tnic_con.node_list(tnic2_edges_final);
+		
+		
+		
+		Query querynodes =session.createQuery("FROM TNIC2_Node WHERE cik in(:ciks)");
+		querynodes.setParameterList("ciks", nodeSet);
+		List<TNIC2_Node> tnic2_nodes = querynodes.list();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		ArrayNode arrayNode = objectMapper.valueToTree(tnic2_nodes);
+		ArrayNode arrayLink = objectMapper.valueToTree(tnic2_edges_final);
+		ObjectNode base_network = objectMapper.createObjectNode();
+		base_network.putArray("nodes").addAll(arrayNode);
+		base_network.putArray("links").addAll(arrayLink);
+		session.getTransaction().commit();
+		session.close();
+		return base_network;
+	}
+	
+	
 	public ObjectNode getBaseNetwork_annual(String cik, int year) {
 		System.out.println("Requested company TNIC2: " + cik + " " + year);
 

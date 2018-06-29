@@ -158,12 +158,6 @@
 	    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 	};
 	
-     function draw_graph_palate (data){
-   	 	
-   	 	
-   	 	TNIC2_viz("rest/tnic2/"+cik_manipulate(data.cik,10),"TNICcontent");
-   	 	
-     } 
     
      $(document).ready(function (){
     	$("#company_network").hide();
@@ -184,7 +178,7 @@
      			$("#cmp_header").text(T_symbol +" : Additional Participant Prediction");
      		});
      		$("#TNIC").click(function(){
-     			TNIC2_viz("rest/tnic2/"+cik_manipulate(CIK,10),"content_post");
+     			TNIC2_viz("rest/tnic2/noduplicates/"+cik_manipulate(CIK,10),"content_post");
      			$("#cmp_header").text(T_symbol +" : TNIC");
      		});
         	

@@ -94,7 +94,7 @@ public class TRDF_gt_controller {
 		session.beginTransaction();
 
 		Query querysource = session
-				.createQuery("FROM TRDF_gt_Link211 t WHERE ((source = :id ) OR (target = :id )) AND predicate= :edgeLabel");
+				.createQuery("FROM TRDF_gt_Link211 t WHERE (source = :id ) AND predicate= :edgeLabel");
 		querysource.setParameter("id", id);
 		querysource.setParameter("edgeLabel", edgeLabel);
 		

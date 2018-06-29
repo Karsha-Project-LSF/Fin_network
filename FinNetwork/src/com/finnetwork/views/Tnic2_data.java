@@ -42,6 +42,19 @@ public class Tnic2_data {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("noduplicates/{cik}")
+	public Response getYearlyNetwork_Sec51_nodup(@PathParam("cik") String companyName) {
+		System.out.println("inside getBaseNetwork TNIC sec 51");
+		TNIC2_controller tnic2_controller = new TNIC2_controller();
+		JsonNode json_base_network = tnic2_controller.getBaseNetwork_annual_Sec51(companyName,"noduplicates");		
+		
+		Response response = Response.ok(json_base_network, MediaType.APPLICATION_JSON).build();		
+		return response;
+	}
+	
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/company")
 	public Response getCompanyData(){
 		TNIC2_controller tnic2_controller = new TNIC2_controller();
