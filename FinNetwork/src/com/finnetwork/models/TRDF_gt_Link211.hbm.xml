@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 14, 2017 3:28:52 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Oct 24, 2018 11:00:10 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="com.finnetwork.models.TRDF_gt_Link" table="trdf_gt_edges_211">
+    <class name="com.finnetwork.models.TRDF_gt_Link211" table="TRDF_GT_LINK211">
         <id name="link_id" type="int">
-            <column name="link_id" />
+            <column name="LINK_ID" />
             <generator class="assigned" />
         </id>
         <property name="source" type="java.lang.String">
-            <column name="source" />
+            <column name="SOURCE" />
         </property>
         <property name="target" type="java.lang.String">
-            <column name="target" />
+            <column name="TARGET" />
         </property>
         <property name="context" type="java.lang.String">
-            <column name="context" />
+            <column name="CONTEXT" />
         </property>
         <property name="predicate" type="java.lang.String">
-            <column name="predicate" />
+            <column name="PREDICATE" />
         </property>
     </class>
 </hibernate-mapping>

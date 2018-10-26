@@ -1,42 +1,42 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 14, 2017 3:28:52 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Oct 24, 2018 11:00:10 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="com.finnetwork.models.TNIC2_Node" table="tinic2_nodes">
+    <class name="com.finnetwork.models.TNIC2_Node" table="TNIC2_NODE">
         <id name="id" type="int">
-            <column name="id" />
+            <column name="ID" />
             <generator class="assigned" />
         </id>
         <property name="ticker_symbol" type="java.lang.String">
-            <column name="ticker_symbol" />
+            <column name="TICKER_SYMBOL" />
         </property>
         <property name="security" type="java.lang.String">
-            <column name="security" />
+            <column name="SECURITY" />
         </property>
         <property name="gics_Sector" type="java.lang.String">
-            <column name="gics_Sector" />
+            <column name="GICS_SECTOR" />
         </property>
-         <property name="gics_sub_Industry" type="java.lang.String">
-            <column name="gics_sub_Industry" />
+        <property name="gics_sub_Industry" type="java.lang.String">
+            <column name="GICS_SUB_INDUSTRY" />
         </property>
         <property name="address_of_headquarters" type="java.lang.String">
-            <column name="address_of_headquarters" />
+            <column name="ADDRESS_OF_HEADQUARTERS" />
         </property>
         <property name="date_first_added" type="java.lang.String">
-            <column name="date_first_added" />
+            <column name="DATE_FIRST_ADDED" />
         </property>
-         <property name="cik" type="java.lang.String">
-            <column name="cik" />
+        <property name="cik" type="java.lang.String">
+            <column name="CIK" />
         </property>
         <property name="naics" type="java.lang.String">
-            <column name="naics" />
+            <column name="NAICS" />
         </property>
         <property name="open_corporate_id" type="java.lang.String">
-            <column name="open_corporate_id" />
+            <column name="OPEN_CORPORATE_ID" />
         </property>
         <property name="ConfirmCIK" type="java.lang.String">
-            <column name="ConfirmCIK" />
+            <column name="CONFIRMCIK" />
         </property>
     </class>
 </hibernate-mapping>

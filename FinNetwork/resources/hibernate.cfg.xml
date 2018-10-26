@@ -7,7 +7,7 @@
   
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fin_network</property>
   <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.connection.password">tharindu</property>
+  <property name="hibernate.connection.password"></property>
    
  <!--   <property name="hibernate.connection.url">jdbc:mysql://clipdb-karsha.umiacs.umd.edu:3306/fin_network</property>
   <property name="hibernate.connection.username">karsha</property>
@@ -43,5 +43,6 @@
   <mapping class="com.finnetwork.models.TRDF_gt_Link211" resource="com/finnetwork/models/TRDF_gt_Link211.hbm.xml"/>
   <mapping class="com.finnetwork.models.APP_Node" resource="com/finnetwork/models/APP_Node.hbm.xml"/>
   <mapping class="com.finnetwork.models.APP_Link" resource="com/finnetwork/models/APP_Link.hbm.xml"/>
+  <mapping class="com.finnetwork.models.bubble_graph" resource="com/finnetwork/models/bubble_graph.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

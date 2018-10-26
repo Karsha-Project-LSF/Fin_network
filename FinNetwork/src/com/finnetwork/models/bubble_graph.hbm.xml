@@ -3,22 +3,19 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Oct 24, 2018 11:00:10 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="com.finnetwork.models.TR_Link" table="TR_LINK">
+    <class name="com.finnetwork.models.bubble_graph" table="BUBBLE_GRAPH">
         <id name="id" type="int">
             <column name="ID" />
             <generator class="assigned" />
         </id>
-        <property name="source" type="double">
-            <column name="SOURCE" />
+        <property name="text" type="java.lang.String">
+            <column name="TEXT" />
         </property>
-        <property name="target" type="double">
-            <column name="TARGET" />
+        <property name="size" type="double">
+            <column name="SIZE" />
         </property>
-        <property name="context" type="java.lang.String">
-            <column name="CONTEXT" />
-        </property>
-        <property name="predicts" type="java.lang.String">
-            <column name="PREDICTS" />
+        <property name="group" type="int">
+            <column name="GROUP" />
         </property>
     </class>
 </hibernate-mapping>

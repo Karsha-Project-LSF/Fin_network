@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 13, 2017 10:47:26 AM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Oct 24, 2018 11:00:10 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="Role" table="role" catalog="fin_network">
+    <class name="com.finnetwork.models.Role" table="ROLE">
         <id name="id" type="int">
-            <column name="id" />
+            <column name="ID" />
             <generator class="assigned" />
         </id>
-        <property name="role" type="string">
-            <column name="role" length="25" />
+        <property name="role" type="java.lang.String">
+            <column name="ROLE" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 14, 2017 3:28:52 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Oct 24, 2018 11:00:10 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="com.finnetwork.models.TNIC2_Link" table="tnic2_edges">
+    <class name="com.finnetwork.models.TNIC2_Link" table="TNIC2_LINK">
         <id name="id" type="int">
-            <column name="id" />
+            <column name="ID" />
             <generator class="assigned" />
         </id>
-         <property name="year" type="int">
-            <column name="year" />
+        <property name="year" type="int">
+            <column name="YEAR" />
         </property>
-        <property name="source" type="java.lang.String">
+        <property name="CIK_1" type="java.lang.String">
             <column name="CIK_1" />
         </property>
-        <property name="target" type="java.lang.String">
+        <property name="CIK_2" type="java.lang.String">
             <column name="CIK_2" />
         </property>
         <property name="score" type="double">
-            <column name="context" />
+            <column name="SCORE" />
         </property>
     </class>
 </hibernate-mapping>
