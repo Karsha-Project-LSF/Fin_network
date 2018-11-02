@@ -48,27 +48,28 @@
 }
 
 
-text {
-        font: 10px sans-serif;
-    }
-    circle {
-        stroke: #565352;
-        stroke-width: 1;
-    }
 
-    div.tooltip {
-        position: absolute;
-        text-align: center;
-        width: 300px;
-        height: 28px;
-        padding: 2px;
-        font: 12px sans-serif;
-        background: lightsteelblue;
-        border: 0px;
-        border-radius: 8px;
-        pointer-events: none;
-    }
+
+     
+
+   .axis {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }    
+
+
 </style>
+<link href="c3_js/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+<script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+<script src="c3_js/c3.min.js"></script>
 
 
 </head>
@@ -96,7 +97,7 @@ text {
 
 				 <div class="x_panel">
 						<div class="x_title">
-							<h2>Topic <span id="cmp_header"></span></h2>
+							<h2>Annual Prospectus Count <span id="cmp_header"></span></h2>
 							<ul class="nav navbar-right panel_toolbox">
 								<li><a class="collapse-link"><i
 										class="fa fa-chevron-up"></i></a></li>
@@ -104,9 +105,7 @@ text {
 							<div class="clearfix"></div>
 						</div>
 						<div class="x_content">
-							<div id="bubble_area" >  </div>
-						
-		
+							<div id="chart" > </div>
 						</div>
 					</div>
 
@@ -162,7 +161,6 @@ text {
 
 </body>
 
+<script src="js/prospectus.js"></script>
 
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="js/topic_mdl.js"></script>
 </html>

@@ -16,12 +16,14 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.finnetwork.controllers.APP_controller;
 import com.finnetwork.controllers.SEC_controller;
 import com.finnetwork.controllers.bubble_graph_controller;
+import com.finnetwork.controllers.prospectus_controller;
 import com.finnetwork.controllers.topic_mdl_controller;
 import com.finnetwork.models.topic_mdl_issuers;
 
 import antlr.collections.List;
 
 import com.finnetwork.models.bubble_graph;
+import com.finnetwork.models.prospectus;
 @Path("/topic")
 public class topic_mdl {
 	@GET
@@ -43,11 +45,23 @@ public class topic_mdl {
 		bubble_graph_controller bubble_graph = new bubble_graph_controller(); 
 		bubble_graph bubble_model=new bubble_graph();
 		
-		//bubble_model=
+		//bubble_model
 		ArrayList bubble_graph_list =(ArrayList) bubble_graph.get_bubble_given_id(2);
 		System.out.println("------->>>>>issuers");
 		Response response= Response.ok(bubble_graph_list,MediaType.APPLICATION_JSON).build();
 		return response;
 	}
-	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/prospectus")
+	//import com.finnetwork.models.prospectus;
+	public Response getProspectus() {
+		prospectus_controller p_c = new prospectus_controller(); 
+		prospectus prospectus=new prospectus();
+		ArrayList prospectus_list=(ArrayList)p_c.get_prospectus();
+    
+		System.out.println("------->>>>>prospectus");
+		Response response= Response.ok(prospectus_list,MediaType.APPLICATION_JSON).build();
+		return response;
+	}
 }

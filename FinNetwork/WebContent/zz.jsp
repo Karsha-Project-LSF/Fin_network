@@ -48,27 +48,28 @@
 }
 
 
-text {
-        font: 10px sans-serif;
-    }
-    circle {
-        stroke: #565352;
-        stroke-width: 1;
-    }
 
-    div.tooltip {
-        position: absolute;
-        text-align: center;
-        width: 300px;
-        height: 28px;
-        padding: 2px;
-        font: 12px sans-serif;
-        background: lightsteelblue;
-        border: 0px;
-        border-radius: 8px;
-        pointer-events: none;
-    }
+
+     
+
+   .axis {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }    
+
+
 </style>
+<link href="c3_js/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+<script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+<script src="c3_js/c3.min.js"></script>
 
 
 </head>
@@ -96,7 +97,7 @@ text {
 
 				 <div class="x_panel">
 						<div class="x_title">
-							<h2>Topic <span id="cmp_header"></span></h2>
+							<h2>Annual Prospectus Count <span id="cmp_header"></span></h2>
 							<ul class="nav navbar-right panel_toolbox">
 								<li><a class="collapse-link"><i
 										class="fa fa-chevron-up"></i></a></li>
@@ -104,9 +105,7 @@ text {
 							<div class="clearfix"></div>
 						</div>
 						<div class="x_content">
-							<div id="bubble_area" >  </div>
-						
-		
+							<div id="chart" > </div>
 						</div>
 					</div>
 
@@ -162,7 +161,114 @@ text {
 
 </body>
 
+<script>
+function sortNumber(a,b) {
+    return a - b;
+}
 
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="js/topic_mdl.js"></script>
+
+    d3.json("rest/topic/prospectus/", function(error, data) {
+    	//y axis
+        var y_2002=['2002'];
+        var y_2003=['2003'];
+        var y_2004=['2004'];
+        var y_2005=['2005'];
+        var y_2006=['2006'];
+        var y_2007=['2007'];
+        var y_2008=['2008'];
+        
+        //x axis
+        var x_2002=['x_2002'];
+        var x_2003=['x_2003'];
+        var x_2004=['x_2004'];
+        var x_2005=['x_2005'];
+        var x_2006=['x_2006'];
+        var x_2007=['x_2007'];
+        var x_2008=['x_2008'];
+        //x index count
+        var x_index_2002=1;
+        var x_index_2003=1;
+        var x_index_2004=1;
+        var x_index_2005=1;
+        var x_index_2006=1;
+	    var x_index_2007=1;
+	    var x_index_2008=1; 
+        var new_arr=[];
+        data.forEach(function(d) {
+        	console.log(d);
+        	if(d[1]=='2002'){
+        		x_2002[x_index_2002]=d[4];
+        		y_2002[x_index_2002]=d[3];
+        		x_index_2002++;
+            	}
+        	else if(d[1]=='2003'){
+        		x_2003[x_index_2003]=d[4];
+        		y_2003[x_index_2003]=d[3];
+        		x_index_2003++;
+            	}
+        	else if(d[1]=='2004'){
+        		x_2004[x_index_2004]=d[4];
+        		y_2004[x_index_2004]=d[3];
+        		x_index_2004++;
+        		}
+        	else if(d[1]=='2005'){
+        		x_2005[x_index_2005]=d[4];
+        		y_2005[x_index_2005]=d[3];
+        		x_index_2005++;
+            	}
+        	else if(d[1]=='2006'){
+        		x_2006[x_index_2006]=d[4];
+        		y_2006[x_index_2006]=d[3];
+        		x_index_2006++;
+            	}
+        	else if(d[1]=='2007'){
+        		x_2007[x_index_2007]=d[4];
+        		y_2007[x_index_2007]=d[3];
+        		x_index_2007++;
+            	}
+        	else if(d[1]=='2008'){
+        		x_2008[x_index_2008]=d[4];
+        		y_2008[x_index_2008]=d[3];
+        		x_index_2008++;
+            	}
+        	
+        });
+        console.log('y_2002',y_2002.length);
+        console.log('x_2002',x_2002);
+        array = y_2002.slice(1,y_2002.length).sort();
+        console.log('array',array);
+    var x=['supun',50,40,30,30,30,40,50]
+    var y=['nadun',50,40,30,30,30,40,50]
+        var chart = c3.generate({
+            data: {
+                xs :{
+                	'data1': 'x1',
+                    'data2': 'x2',
+                    },
+                columns: [
+                	['x1', 'a', 'b', 'c', 'd', 'e', 'f'],
+                    ['x2', 'g', 'h', 'i', 'j', 'k'],
+                    ['data1', 30, 200, 100, 400, 150, 250],
+                    ['data2', 20, 180, 240, 100, 190]
+              
+                ],
+                type: 'bar'
+            },
+            bar: {
+                width: {
+                    ratio: 0.5 // this makes bar width 50% of length between ticks
+                }
+                // or
+                //width: 100 // this makes bar width 100px
+            }
+          
+        });
+
+
+        
+
+    });
+    
+</script>
+
 </html>

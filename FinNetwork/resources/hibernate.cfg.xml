@@ -44,5 +44,6 @@
   <mapping class="com.finnetwork.models.APP_Node" resource="com/finnetwork/models/APP_Node.hbm.xml"/>
   <mapping class="com.finnetwork.models.APP_Link" resource="com/finnetwork/models/APP_Link.hbm.xml"/>
   <mapping class="com.finnetwork.models.bubble_graph" resource="com/finnetwork/models/bubble_graph.hbm.xml"/>
+  <mapping class="com.finnetwork.models.prospectus" resource="com/finnetwork/models/prospectus.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>
