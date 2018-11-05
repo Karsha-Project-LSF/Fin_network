@@ -340,7 +340,7 @@ getDataForGivenYear('2002','chart_2002','Graph_for_specific_topic_2002');
 			var chart = c3.generate({
 				data : {
 					columns : [
-							[ year, topic[0], topic[1], topic[2], topic[3],
+							[ 'Prospectus Count Of '+year, topic[0], topic[1], topic[2], topic[3],
 									topic[4], topic[5], topic[6], topic[7],
 									topic[8], topic[9], topic[10], topic[11],
 									topic[12], topic[13], topic[14], topic[15],
