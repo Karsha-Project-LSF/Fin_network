@@ -143,42 +143,49 @@
 												<div role="tabpanel" class="tab-pane fade active in"
 													id="tab_content11" aria-labelledby="home-tab">
 													<div id="chart_2002"></div>
+													<div><h2 id=2002_topic ></h2></div>
 													<div style="display: none;" class="x_content"
 														id="Graph_for_specific_topic_2002"></div>
 												</div>
 												<div role="tabpanel" class="tab-pane fade"
 													id="tab_content22" aria-labelledby="profile-tab">
 													<div id="chart_2003"></div>
+													<div><h2 id=2003_topic ></h2></div>
 													<div style="display: none;" class="x_content"
 														id="Graph_for_specific_topic_2003"></div>
 												</div>
 												<div role="tabpanel" class="tab-pane fade"
 													id="tab_content33" aria-labelledby="profile-tab">
 													<div id="chart_2004"></div>
+													<div><h2 id=2004_topic ></h2></div>
 													<div style="display: none;" class="x_content"
 														id="Graph_for_specific_topic_2004"></div>
 												</div>
 												<div role="tabpanel" class="tab-pane fade"
 													id="tab_content44" aria-labelledby="profile-tab">
 													<div id="chart_2005"></div>
+													<div><h2 id=2005_topic ></h2></div>
 													<div style="display: none;" class="x_content"
 														id="Graph_for_specific_topic_2005"></div>
 												</div>
 												<div role="tabpanel" class="tab-pane fade"
 													id="tab_content55" aria-labelledby="profile-tab">
 													<div id="chart_2006"></div>
+													<div><h2 id=2006_topic ></h2></div>
 													<div style="display: none;" class="x_content"
 														id="Graph_for_specific_topic_2006"></div>
 												</div>
 												<div role="tabpanel" class="tab-pane fade"
 													id="tab_content66" aria-labelledby="profile-tab">
 													<div id="chart_2007"></div>
+													<div><h2 id=2007_topic ></h2></div>
 													<div style="display: none;" class="x_content"
 														id="Graph_for_specific_topic_2007"></div>
 												</div>
 												<div role="tabpanel" class="tab-pane fade"
 													id="tab_content77" aria-labelledby="profile-tab">
 													<div id="chart_2008"></div>
+													<div><h2 id=2008_topic ></h2></div>
 													<div style="display: none;" class="x_content"
 														id="Graph_for_specific_topic_2008"></div>
 												</div>
@@ -402,7 +409,7 @@ getDataForGivenYear('2002','chart_2002','Graph_for_specific_topic_2002');
 		});
 	}
 	function showPidWhenGivenTopicAndYear(event_data, data,id_specific_topic) {
-
+		document.getElementById(event_data.id+"_topic").innerHTML = 'Associated topic  w'+(event_data.index+1);
 		var PidArray = [];
 		var WeightAray = [ 'Weight-PID' ];
 		var countPid = 0;
@@ -427,6 +434,9 @@ getDataForGivenYear('2002','chart_2002','Graph_for_specific_topic_2002');
 
 				],
 				type : 'bar',
+				colors: {
+					'Weight-PID': '#FFA500',
+		        },
 				groups : [ [ 'Weight-PID' ] ]
 			},
 			bindto : '#'+id_specific_topic,
