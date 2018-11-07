@@ -173,7 +173,7 @@
 								<ul class="nav child_menu">
 									<li><a href="topic_mdl.jsp" id="sid_14">Topics</a></li>
 									
-									<li><a href="##" id="sid_14">Issuers</a></li>
+									<li><a href="issuers.jsp" id="sid_14">Issuers</a></li>
 									<li><a href="prospectus_mdl.jsp" id="sid_14">Prospectus</a></li>
 								</ul>
 							</li>

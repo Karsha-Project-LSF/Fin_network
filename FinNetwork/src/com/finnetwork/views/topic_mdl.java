@@ -31,11 +31,21 @@ public class topic_mdl {
 	@Path("/issuers")
 	public Response getBaseNetwork() {
 		topic_mdl_controller to_m_c = new topic_mdl_controller(); 
-		topic_mdl_issuers tmi=new topic_mdl_issuers();
-		 tmi=to_m_c.get_issuers_given_id(2);
-    
-		System.out.println("------->>>>>issuers");
-		Response response= Response.ok(tmi,MediaType.APPLICATION_JSON).build();
+		to_m_c.getCompanyData();
+		ObjectNode json_company_data = to_m_c.getCompanyData();
+		Response response = Response.ok(json_company_data.toString(), MediaType.APPLICATION_JSON).build();	
+		System.out.println(json_company_data.toString());
+		return response;
+	}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{id}")
+	public Response getBaseNetworkYear(@PathParam("id") String id) {
+		
+		topic_mdl_controller to_m_c = new topic_mdl_controller();
+		JsonNode json_base_network_yearly = to_m_c.getIssuersDataForgivenData(id);
+		
+		Response response = Response.ok(json_base_network_yearly, MediaType.APPLICATION_JSON).build();		
 		return response;
 	}
 	@GET
