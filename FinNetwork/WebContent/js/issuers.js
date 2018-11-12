@@ -65,34 +65,23 @@
     	 console.log('issuers_draw_me_ URL',url);
     	 $.getJSON(url,function(data) {
     		 console.log('data__>',data);
-    		 var y=['Count Of FC',0,0,0,0,0,0,0];
-    		 
+    		 var y=['FC'];
+    		 var x=[];
+    		 var n_a=['a'];
+    		 var n_b=['b'];
+    		 var n_m=['m'];
+    		 var count=0;
     	     		data.company.forEach(function(d) {
     	     			console.log('data__>',d);
-    	     			if(d[2]===2002){
-        	     			y[1]=d[0];		
-        	     		}
-    	     			else if(d[2]===2003){
-    	     				y[2]=d[0];
-            	     	}
-    	     			else if(d[2]===2004){
-    	     				y[3]=d[0];
-    	     			}
-    	     			else if(d[2]===2005){
-    	     				y[4]=d[0];
-    	     			}
-    	     			else if(d[2]===2006){
-    	     				y[5]=d[0];
-    	     			}
-    	     			else if(d[2]===2007){
-    	     				y[6]=d[0];
-    	     			}
-    	     			else if(d[2]===2008){
-    	     				y[7]=d[0];
-    	     			}
+    	     			y[count+1]=parseInt(d[1]);
+    	     			x[count]=d[0];
+    	     			n_a[count+1]=parseInt(d[2]);
+    	     			n_b[count+1]=parseInt(d[3]);
+    	     			n_m[count+1]=parseInt(d[4]);
+    	     			count++;
         	     		})
         	     		console.log('y--> ',y);
-    	     		var temp = y.slice(1, y.length).sort();
+    	     		var temp = y.slice(1, y.length).sort(sortNumber);
     	     		console.log('temp--> ',temp,'max',temp[temp.length-1]);
     	     		
     	     		
@@ -101,7 +90,8 @@
     		                columns: [
     		                    y
     		                ],
-    		                type: 'bar'
+    		                type: 'bar',
+    		                
     		            },
     		            bindto : '#content_btn',
     		            bar: {
@@ -113,11 +103,11 @@
     		            },
     		            axis: {
     		                x : {label : {
-    		                    text: 'Years',
+    		                    text: 'FC',
     		                    position: 'outer-middle',
     		                },
     		                    type: 'category',
-    		                    categories:  ['2002', '2003', '2004', '2005', '2006', '2007', '2008']
+    		                    categories:  x
     		                },
     		                tick: {
     		                    x:{
@@ -135,17 +125,78 @@
     		                },
     		                y: {
     		                    label : {
-    		                        text: 'Count Of FC',
+    		                        text: 'n Value',
     		                        position: 'outer-middle',
     		                    },
-    		                    max: temp[temp.length-1],
+    		                    max: temp[temp.length-1]+1,
     		                    min: 0,
     		                    padding: {top:0, bottom:0}
     		                }
     		            }
     		        });
-
+// second chart
 	     		       
+    		        var chart = c3.generate({
+    		            data: {
+    		                columns: [
+    		                	n_m,
+    		                	n_b,
+    		                	n_a,
+    		                	
+    		                ],
+    		                type: 'bar',
+    		                groups:[['b','a','m']],
+    		                colors: {
+        							'a': '#ADD8E6',
+        							'b': '#90EE90',
+        							'm': '#FF1493',
+        				        },
+        				    order: null
+    		            },
+    		            bindto : '#content_btn2',
+    		            bar: {
+    		                width: {
+    		                    ratio: 0.5 // this makes bar width 50% of length between ticks
+    		                }
+    		                // or
+    		                //width: 100 // this makes bar width 100px
+    		            },
+    		            axis: {
+    		                x : {label : {
+    		                    text: 'FC',
+    		                    position: 'outer-middle',
+    		                },
+    		                    type: 'category',
+    		                    categories:  x
+    		                },
+    		                tick: {
+    		                    x:{
+    		                       
+    		                        multiline:false,
+    		                        culling: {
+    		                            max: 1
+    		                        },
+    		                    },
+    		                    label : {
+    		                        text: 'Days',
+    		                        position: 'center-bottom',
+
+    		                    },
+    		                },
+    		                y: {
+    		                    label : {
+    		                        text: 'n Value',
+    		                        position: 'outer-middle',
+    		                    },
+    		                    max: temp[temp.length-1]+1,
+    		                    min: 0,
+    		                    padding: {top:0, bottom:0}
+    		                }
+    		            }
+    		        });
+    		        
     	     	});
          }
-     
+     function sortNumber(a,b) {
+    	    return a - b;
+    	}

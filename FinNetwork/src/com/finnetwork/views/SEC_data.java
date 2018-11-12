@@ -43,6 +43,7 @@ public class SEC_data {
 		return response;
 	}
 	
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/company")

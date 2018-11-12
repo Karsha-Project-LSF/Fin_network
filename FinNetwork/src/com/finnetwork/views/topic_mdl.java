@@ -39,6 +39,17 @@ public class topic_mdl {
 	}
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/issuers_FI_FC")
+	public Response Count_Fi_FC() {
+		topic_mdl_controller to_m_c = new topic_mdl_controller(); 
+		
+		ObjectNode json_company_data = to_m_c.get_count_Fi();
+		Response response = Response.ok(json_company_data.toString(), MediaType.APPLICATION_JSON).build();	
+		System.out.println(json_company_data.toString());
+		return response;
+	}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
 	public Response getBaseNetworkYear(@PathParam("id") String id) {
 		

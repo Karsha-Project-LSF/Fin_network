@@ -82,7 +82,7 @@
                 <div class="x_content">
                 	
                     <div id="content_btn" style="height:450px;"></div>
-
+                    <div id="content_btn2" style="height:450px;"></div>
 				</div>
            </div>
            </div>

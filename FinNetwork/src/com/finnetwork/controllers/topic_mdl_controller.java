@@ -55,13 +55,34 @@ public class topic_mdl_controller {
 		// System.out.println("size of company records : "+companyNode.toString());
 		return companyNode;
 	}
+	public ObjectNode get_count_Fi() {
+		System.out.println("Requested company data issuer ");
 
+		Session session = hibernate_util.getSession();
+		session.beginTransaction();
+		Query querysource = session
+				.createQuery("SELECT COUNT(Fc),Fi FROM topic_mdl_issuers GROUP BY FC");
+
+		List sourceList = querysource.list();
+
+		ObjectMapper mapper = new ObjectMapper();
+		ArrayNode array = mapper.valueToTree(sourceList);
+		ObjectNode companyNode = mapper.createObjectNode();
+		companyNode.putArray("company").addAll(array);
+
+		session.getTransaction().commit();
+		session.close();
+		// System.out.println("size of company records : "+companyNode.toString());
+		return companyNode;
+	}
 	public ObjectNode getIssuersDataForgivenData(String Fi) {
 		
 		Session session = hibernate_util.getSession();
 		session.beginTransaction();
 		Query querysource = session
-				.createQuery("SELECT COUNT(Fc),Fi,year FROM topic_mdl_issuers WHERE Fi= :zz GROUP BY year ");
+				.createQuery("SELECT x.Fc,y.n,y.n_a,y.n_b,y.n_m FROM topic_mdl_issuers AS x , prospectus AS y WHERE x.Fi= :zz AND y.PID=x.Fc");
+		//SELECT COUNT(Fc),Fi,year FROM topic_mdl_issuers WHERE Fi= :zz GROUP BY year 
+		////SELECT x.FC,y.n FROM `topic_mdl_issuers` AS x ,`topic_mdl_prospectus` AS y WHERE x.FI='FI_34'AND y.PID=x.FC
 		querysource.setParameter("zz", Fi);
 		List sourceList = querysource.list();
 

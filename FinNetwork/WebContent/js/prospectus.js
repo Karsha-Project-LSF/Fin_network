@@ -1,4 +1,4 @@
-function sortNumber(a,b) {
+ function sortNumber(a,b) {
     return a - b;
 }
     
